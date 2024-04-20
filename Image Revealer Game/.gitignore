@@ -1,0 +1,45 @@
+# Eclipse specific #
+####################
+.classpath
+.project
+.settings/
+
+# Compiled class files #
+########################
+*.class
+
+# Log files #
+#############
+*.log
+
+# Package Files #
+#################
+*.jar
+*.war
+*.ear
+
+# Ignore Maven, Gradle build directories #
+##########################################
+target/
+build/
+out/    # IntelliJ build output directory
+
+# Virtual Machine crash logs #
+##############################
+hs_err_pid*
+
+# Dependency directories #
+##########################
+lib/
+libs/
+
+# Ignore OS generated files #
+############################
+.DS_Store    # macOS desktop services store
+Thumbs.db    # Windows thumbnail cache
+desktop.ini  # Windows folders settings
+
+# Ignore project-specific temporary files or directories #
+##########################################################
+tmp/
+temp/
