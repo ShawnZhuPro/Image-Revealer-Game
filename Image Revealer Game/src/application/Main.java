@@ -30,7 +30,7 @@ public class Main extends Application {
 //	    stage.setScene(scene);
 //	    stage.show();
         
-        splitCircle(stage);
+        splitCircle(stage, 300, 135, 100, 1);
 	}
 	
 	// Method to calculate the average of all pixel colors
@@ -39,33 +39,36 @@ public class Main extends Application {
 	}
 	
 	// Recursively split circles
-	public void splitCircle(Stage stage) {
-		//Drawing a Circle 
-	      Circle circle = new Circle(); 
+	// *TODO: figure out how to create multiple groups in a single stage (if that's feasible)
+	public void splitCircle(Stage stage, int centerX, int centerY, int radius, int count) {
+		
+		
+		for(int i = 0; i < count; i++) {
+			//Drawing a Circle with properties
+		    Circle circle = new Circle(centerX, centerY, radius); 
+		}
+
 	         
-		 //Setting the properties of the circle 
-		 circle.setCenterX(300.0f); 
-		 circle.setCenterY(135.0f); 
-		 circle.setRadius(100.0f); 
+
+		   
+	    //Creating a Group object  
+		Group root = new Group(circle); 
 		     
-		 //Creating a Group object  
-		 Group root = new Group(circle); 
-		     
-		 //Creating a scene object 
-		 Scene scene = new Scene(root, 600, 300);  
+		//Creating a scene object 
+		Scene scene = new Scene(root, 600, 300);  
 		 
-		 //Setting title to the Stage 
-		 stage.setTitle("Drawing a Circle"); 
+		//Setting title to the Stage 
+		stage.setTitle("Drawing a Circle"); 
 		     
-		 //Adding scene to the stage 
-		 stage.setScene(scene); 
+		//Adding scene to the stage 
+		stage.setScene(scene); 
 		 
-		 // Set stage width/height to the dimensions we want
-		 stage.setWidth(800);
-		 stage.setHeight(600);
+		// Set stage width/height to the dimensions we want
+		stage.setWidth(800);
+		stage.setHeight(600);
 		     
-		 //Displaying the contents of the stage 
-		 stage.show();
+		//Displaying the contents of the stage 
+		stage.show();
 		
 	}
 	
