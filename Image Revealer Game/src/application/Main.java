@@ -28,9 +28,16 @@ public class Main extends Application {
 	    stage.setTitle("Displaying Image");
 	    stage.setScene(scene);
 	    stage.show();
+	}
+	
+	// Method to calculate the average of all pixel colors
+	public int average() {
+		return 0;
+	}
+	
+	// Recursively split circles
+	public void splitCircle() {
 		
-
-
 	}
 	
 	public static void main(String[] args) {
