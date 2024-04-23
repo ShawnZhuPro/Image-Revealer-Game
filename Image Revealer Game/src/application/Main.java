@@ -36,7 +36,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    // TODO* Finish this method
+    // TODO* Debug this method
     private void splitCircle(Circle circle, int depth) {
     	// Base case
         if (depth >= targetDepth) {
@@ -53,8 +53,24 @@ public class Main extends Application {
 
         // Create and add 4 smaller circles
         for (int i = 0; i < 4; i++) {
+        	Circle smallerCircle = new Circle();
+        	// Update attributes of each circle
+        	// Logic that positions each circle in its expected spots
+        	smallerCircle.setCenterX(x+(i%2==0 ? -1 : 1)*newRadius);
+        	smallerCircle.setCenterY(y+(i%2==0 ? -1 : 1)*newRadius);
+        	smallerCircle.setRadius(newRadius);
+        	smallerCircle.setFill(color);
+        	
+        	// Draws the circle on the scene
+        	((Pane) circle.getParent()).getChildren().add(smallerCircle);
 
-            // Add mouse event handler for circle splitting
+            // Mouse event handler for circle splitting
+        	smallerCircle.setOnMouseEntered(event -> {
+        		if(!smallerCircle.getProperties().containsKey("split")) {
+        			smallerCircle.getProperties().put("split", true);
+        			splitCircle(smallerCircle, depth+1);
+        		}
+        	});
             
         }
     }
