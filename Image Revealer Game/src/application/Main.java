@@ -13,7 +13,7 @@ public class Main extends Application {
 	int maxSize = 800;   // Max size of the scene
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
         Pane root = new Pane();
         Scene scene = new Scene(root, maxSize, maxSize);
 
@@ -31,11 +31,12 @@ public class Main extends Application {
             }
         });
 
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Program");
-        primaryStage.show();
+        stage.setScene(scene);
+        stage.setTitle("Program");
+        stage.show();
     }
 
+    // TODO* Finish this method
     private void splitCircle(Circle circle, int depth) {
     	// Base case
         if (depth >= targetDepth) {
