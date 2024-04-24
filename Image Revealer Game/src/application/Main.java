@@ -57,7 +57,7 @@ public class Main extends Application {
         	// Update attributes of each circle
         	// Logic that positions each circle in its expected spots
         	smallerCircle.setCenterX(x+(i%2==0 ? -1 : 1)*newRadius);
-        	smallerCircle.setCenterY(y+(i%2==0 ? -1 : 1)*newRadius);
+        	smallerCircle.setCenterY(y+(i/2==0 ? -1 : 1)*newRadius);
         	smallerCircle.setRadius(newRadius);
         	smallerCircle.setFill(color);
         	
