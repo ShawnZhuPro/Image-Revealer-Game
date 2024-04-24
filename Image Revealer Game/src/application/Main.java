@@ -11,6 +11,7 @@ public class Main extends Application {
 	
 	int targetDepth = 7; // Max # of iterations for splitCircle() method
 	int maxSize = 800;   // Max size of the scene
+	int circlesSplit = 0;
 
     @Override
     public void start(Stage stage) {
@@ -27,6 +28,7 @@ public class Main extends Application {
         	// If the circle being entered isn't already split, we classify it as now a split circle
             if (!bigCircle.getProperties().containsKey("split")) {
                 bigCircle.getProperties().put("split", true);
+                circlesSplit++;
                 splitCircle(bigCircle, 0);  // The entire algorithm is pretty much based off this
             }
         });
@@ -42,7 +44,9 @@ public class Main extends Application {
         if (depth >= targetDepth) {
             return;
         }
-
+        
+        circlesSplit++;
+        System.out.println(circlesSplit);
         double newRadius = circle.getRadius() / 2;
         double x = circle.getCenterX();
         double y = circle.getCenterY();
