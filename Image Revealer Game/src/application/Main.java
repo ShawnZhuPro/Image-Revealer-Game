@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        Pane root = new Pane();
+        Pane root = new Pane();//
         Scene scene = new Scene(root, maxSize, maxSize);
         
         // Initialize image
