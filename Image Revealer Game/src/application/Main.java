@@ -138,6 +138,7 @@ public class Main extends Application {
             }
         }
     	System.out.println("Sum" + sum);
+    	System.out.println("Count" + count);
     	System.out.println("Color" + color);
     	System.out.println("Height" + height);
     	System.out.println("Width" + width);
