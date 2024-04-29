@@ -93,7 +93,7 @@ public class Main extends Application {
         }
     }
     
-    // Gets the average R color value of the image
+    // Gets the average R color value of the image//
     private int getR(Image image, int depth, int i) {
         PixelReader pixelReader = image.getPixelReader();
         int height = (int) image.getHeight();
