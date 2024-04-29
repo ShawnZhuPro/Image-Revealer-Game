@@ -23,7 +23,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, maxSize, maxSize);
         
         // Initialize image
-        Image image = new Image("file:./src/Images/koala.png");
+        Image image = new Image("file:./src/Images/FDR.png");
         
         // Initialize initial big circle
         int width = (int) image.getWidth();
