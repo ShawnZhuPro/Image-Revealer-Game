@@ -65,7 +65,7 @@ public class Main extends Application {
         circle.setFill(Color.TRANSPARENT);
         
         // X and Y directions for circles
-        int[] dx = {-1, 1, -1, 1};
+        int[] dx = {-1, 1, -1, 1};//
         int[] dy = {-1, -1, 1, 1};
 
         // Create and add 4 smaller circles
