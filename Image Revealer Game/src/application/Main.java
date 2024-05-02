@@ -23,7 +23,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, maxSize, maxSize);
         
         // Initialize image
-        Image image = new Image("file:./src/Images/FDR.png");
+        Image image = new Image("file:./src/Images/koala.png");
         
         // Initialize initial big circle
         int width = (int) image.getWidth();
@@ -60,9 +60,7 @@ public class Main extends Application {
         double newRadius = circle.getRadius() / 2;
         double x = circle.getCenterX();
         double y = circle.getCenterY();
-        
-        // Remove the current circle
-        circle.setFill(Color.TRANSPARENT);
+
         
         // X and Y directions for circles
         int[] dx = {-1, 1, -1, 1};//
@@ -72,26 +70,28 @@ public class Main extends Application {
         for (int i = 0; i < 4; i++) {
         	// Logic that positions each circle in its expected spots
         	// Update attributes of each circle
-        	int newX = (int)(x + dx[i] * newRadius);
-        	int newY = (int)(y + dy[i] * newRadius);
+        	int newX = x0 + (i%2) * (width / 2);
+        	int newY = y0 + (i/2) * (height / 2);
         	int newW = width /2;
         	int newH = height / 2;
-        	Color newColor = extractAvg(image, x0 + (i%2) * newW, y0 + (i/2) * newH, newW, newH);
+        	Color newColor = extractAvg(image, newX, newY, newW, newH);
         	// Initialize new circle
-        	Circle smallerCircle = new Circle(newX, newY, newRadius, newColor);
+        	Circle smallerCircle = new Circle(x+dx[i]*newRadius, y+dy[i]*newRadius, newRadius, newColor);
 
         	// Draws the circle on the scene
         	((Pane) circle.getParent()).getChildren().add(smallerCircle);
 
-        	int iMod = i%2;
-        	int iDiv = i/2;
             // Mouse event handler for circle splitting
         	smallerCircle.setOnMouseEntered(event -> {
         		if(!smallerCircle.getProperties().containsKey("split")) {
         			smallerCircle.getProperties().put("split", true);
-        			splitCircle(image, smallerCircle, depth+1, x0 + (iMod) * newW, y0 + (iDiv) * newH, newW, newH);
+        			splitCircle(image, smallerCircle, depth+1, newX, newY, newW, newH);
         		}
         	});
+        	
+            
+            // Remove the current circle
+            circle.setFill(Color.TRANSPARENT);
             
         }
     }
@@ -100,8 +100,14 @@ public class Main extends Application {
     	PixelReader pixelReader = image.getPixelReader();
     	int sumR = 0, sumG = 0, sumB = 0;
     	int count = 0;
-    	for (int y = 0; y < y0 + height; y++) {
-            for (int x = 0; x < x0 + width; x++) {
+    	
+    	int maxX = (int) image.getWidth();
+    	int maxY = (int) image.getHeight();
+    	
+    	int effectiveWidth = Math.min(width,  maxX - x0);
+    	int effectiveHeight = Math.min(height, maxY - y0);
+    	for (int y = 0; y < y0 + effectiveHeight; y++) {
+            for (int x = 0; x < x0 + effectiveWidth; x++) {
                 Color c = pixelReader.getColor(x, y);
                 sumR += (long) (c.getRed() * 255);
                 sumG += (long) (c.getGreen() * 255);
