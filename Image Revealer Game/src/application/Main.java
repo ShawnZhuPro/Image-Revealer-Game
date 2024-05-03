@@ -22,43 +22,80 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		if (state==0) {
+			/*
+			 * Categories:
+			 *  -Historical Figures(Presidents)
+
+				-Celebrities
+
+				-Animals
+
+				-Fruits
+				
+				-7 wonders
+			 */
 			Group introScreen = new Group();
-			Scene introScreen1 = new Scene(introScreen, 800, 800, Color.BEIGE);
+			Scene introScreen1 = new Scene(introScreen, maxSize, maxSize, Color.BEIGE);
 			stage.setTitle("Welcome!");
 			Circle circle = new Circle(40,40,40);
 			circle.setFill(Color.BLACK);
 			Text text = new Text();
-			text.setText("Hey there!");
+			text.setText("Hey there! Pick a category below to get started.");
 			text.setX(100); text.setY(100);
-			Button historyButton = new Button("History");
-			historyButton.setLayoutX(200); historyButton.setLayoutY(200);
-			Button englishButton = new Button("English");
-			englishButton.setLayoutX(400); englishButton.setLayoutY(200);
+			Button historyButton = new Button("Historical Figures");
+			historyButton.setLayoutX(150); historyButton.setLayoutY(600);
+			Button celebButton = new Button("Celebrities");
+			celebButton.setLayoutX(300); celebButton.setLayoutY(600);
+			Button animalButton = new Button("Animals");
+			animalButton.setLayoutX(400); animalButton.setLayoutY(600);
+			Button fruitButton = new Button("Fruits");
+			fruitButton.setLayoutX(500); fruitButton.setLayoutY(600);
 			EventHandler<ActionEvent> history_event = new EventHandler<ActionEvent>() { 
-	            public void handle(ActionEvent e) 
-	            { 
-	                System.out.println("History button selected"); 
-	                state = 1;
-	                start(stage);
-	            } 
-	        }; 
-	        EventHandler<ActionEvent> english_event = new EventHandler<ActionEvent>() { 
-	            public void handle(ActionEvent e) 
-	            { 
-	                System.out.println("English button selected"); 
-	                state = 2;
-	                start(stage);
-	            } 
-	        }; 
-	        historyButton.setOnAction(history_event);
-	        englishButton.setOnAction(english_event);
+				public void handle(ActionEvent e) 
+				{ 
+					System.out.println("History button selected"); 
+					state = 1;
+					start(stage);
+				} 
+			}; 
+			EventHandler<ActionEvent> celeb_event = new EventHandler<ActionEvent>() { 
+				public void handle(ActionEvent e) 
+				{ 
+					System.out.println("Celebrity button selected"); 
+					state = 2;
+					start(stage);
+				} 
+			}; 
+			EventHandler<ActionEvent> animal_event = new EventHandler<ActionEvent>() { 
+				public void handle(ActionEvent e) 
+				{ 
+					System.out.println("Animal button selected"); 
+					state = 3;
+					start(stage);
+				} 
+			}; 
+			EventHandler<ActionEvent> fruit_event = new EventHandler<ActionEvent>() { 
+				public void handle(ActionEvent e) 
+				{ 
+					System.out.println("Fruit button selected"); 
+					state = 4;
+					start(stage);
+				} 
+			}; 
+			historyButton.setOnAction(history_event);
+			celebButton.setOnAction(celeb_event);
+			animalButton.setOnAction(animal_event);
+			fruitButton.setOnAction(fruit_event);
 			introScreen.getChildren().add(text);
 			introScreen.getChildren().add(circle);
-			introScreen.getChildren().add(englishButton);
+			introScreen.getChildren().add(celebButton);
 			introScreen.getChildren().add(historyButton);
+			introScreen.getChildren().add(animalButton);
+			introScreen.getChildren().add(fruitButton);
 			stage.setScene(introScreen1);
 		}
-		if (state==1) {
+		
+		if (state==5) {
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
 			// Create initial big circle
