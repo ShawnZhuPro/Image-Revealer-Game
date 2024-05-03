@@ -8,7 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,11 +21,20 @@ public class Main extends Application {
 	int targetDepth = 7; // Max # of iterations for splitCircle() method
 	int maxSize = 800;   // Max size of the scene
 	int circlesSplit = 0;
-	int state = 0;
+	int state = -1;
 
 	@Override
 	public void start(Stage stage) {
+		if (state==-1) {
+			Group startScreen = new Group();
+			Stop[] stops = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
+			LinearGradient g = new LinearGradient(0,0,maxSize,maxSize, false, CycleMethod.REFLECT, stops);
+			Scene startScreen1 = new Scene(startScreen, maxSize, maxSize, g);
+			stage.setTitle("Welcome");
+			stage.setScene(startScreen1);
+		}
 		if (state==0) {
+			//Start menu
 			/*
 			 * Categories:
 			 *  -Historical Figures(Presidents)
@@ -95,7 +108,7 @@ public class Main extends Application {
 			stage.setScene(introScreen1);
 		}
 		
-		if (state==5) {
+		if (state==1) {
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
 			// Create initial big circle
