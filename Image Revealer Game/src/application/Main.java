@@ -23,7 +23,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, maxSize, maxSize);
         
         // Initialize image
-        Image image = new Image("file:./src/Images/koala.png");
+        Image image = new Image("file:./src/Images/FDR.png");
         
         // Initialize initial big circle
         int width = (int) image.getWidth();
@@ -101,13 +101,22 @@ public class Main extends Application {
     	int sumR = 0, sumG = 0, sumB = 0;
     	int count = 0;
     	
-    	int maxX = (int) image.getWidth();
-    	int maxY = (int) image.getHeight();
-    	
-    	int effectiveWidth = Math.min(width,  maxX - x0);
-    	int effectiveHeight = Math.min(height, maxY - y0);
-    	for (int y = 0; y < y0 + effectiveHeight; y++) {
-            for (int x = 0; x < x0 + effectiveWidth; x++) {
+    	// Sampling colors from specific points within each quadrant to represent colors
+    	//more accurately and reduce "washing" of colors
+    	int[] samplePointsX = {
+    			x0 + width / 4,  // Left boundary
+    			x0 + width / 2,  // Middle boundary
+    			x0 + 3 * width / 4  // Right boundary
+    	};
+       	int[] samplePointsY = {
+    			y0 + height / 4,  // Left boundary
+    			y0 + height / 2,  // Middle boundary
+    			y0 + 3 * height / 4  // Right boundary
+    	};
+       	
+       	// For every combination of horizontal and vertical sampling points, we compute the average RGB color
+    	for (int y : samplePointsY) {
+            for (int x : samplePointsX) {
                 Color c = pixelReader.getColor(x, y);
                 sumR += (long) (c.getRed() * 255);
                 sumG += (long) (c.getGreen() * 255);
