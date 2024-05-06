@@ -7,7 +7,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -21,8 +25,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	int targetDepth = 7; // Max # of iterations for splitCircle() method
-	int maxSize = 800;   // Max size of the scene
-	int circlesSplit = 0;
+	int maxSize = 1024;   // Max size of the scene
 	int state = -1;
 
 	/**
@@ -66,6 +69,8 @@ public class Main extends Application {
 			Text text = new Text();
 			text.setText("Hey there! Pick a category below to get started.");
 			text.setX(100); text.setY(100);
+      
+      // Buttons for all categories
 			Button historyButton = new Button("Historical Figures");
 			historyButton.setLayoutX(150); historyButton.setLayoutY(600);
 			Button celebButton = new Button("Celebrities");
@@ -74,6 +79,8 @@ public class Main extends Application {
 			animalButton.setLayoutX(400); animalButton.setLayoutY(600);
 			Button fruitButton = new Button("Fruits");
 			fruitButton.setLayoutX(500); fruitButton.setLayoutY(600);
+      
+      // History category
 			EventHandler<ActionEvent> history_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -82,6 +89,8 @@ public class Main extends Application {
 					start(stage);
 				} 
 			}; 
+      
+      // Celebrity category
 			EventHandler<ActionEvent> celeb_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -90,6 +99,8 @@ public class Main extends Application {
 					start(stage);
 				} 
 			}; 
+      
+      // Animal category
 			EventHandler<ActionEvent> animal_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -98,6 +109,8 @@ public class Main extends Application {
 					start(stage);
 				} 
 			}; 
+      
+      // Fruit category
 			EventHandler<ActionEvent> fruit_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -106,10 +119,14 @@ public class Main extends Application {
 					start(stage);
 				} 
 			}; 
+      
+      // Initialize actions for buttons
 			historyButton.setOnAction(history_event);
 			celebButton.setOnAction(celeb_event);
 			animalButton.setOnAction(animal_event);
 			fruitButton.setOnAction(fruit_event);
+      
+      // Render buttons on intro screen
 			introScreen.getChildren().add(text);
 			introScreen.getChildren().add(circle);
 			introScreen.getChildren().add(celebButton);
@@ -122,66 +139,13 @@ public class Main extends Application {
 		if (state==1) {
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
-			// Create initial big circle
-			Circle bigCircle = new Circle(maxSize / 2, maxSize / 2, maxSize / 4, Color.rgb((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256)));
-			root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
-
-			// Add mouse event handler for splitting the big starter circle
-			// This mouse event occurs when the cursor "enters" a circle
-			bigCircle.setOnMouseEntered(event -> {
-				// If the circle being entered isn't already split, we classify it as now a split circle
-				if (!bigCircle.getProperties().containsKey("split")) {
-					bigCircle.getProperties().put("split", true);
-					circlesSplit++;
-					splitCircle(bigCircle, 0);  // The entire algorithm is pretty much based off this
-				}
-			});
-
-			stage.setScene(scene);
+			new ImageToCircleSplitter("file:./src/Images/FDR.png", root, maxSize, targetDepth);
+        
+      stage.setScene(scene);
 		}
 		stage.setTitle("Guess Who");
 		stage.show();
 	}
-
-	// TODO* Debug this method
-	private void splitCircle(Circle circle, int depth) {
-		// Base case
-		if (depth >= targetDepth) {
-			return;
-		}
-
-		circlesSplit++;
-		System.out.println(circlesSplit);
-		double newRadius = circle.getRadius() / 2;
-		double x = circle.getCenterX();
-		double y = circle.getCenterY();
-		Color color = (Color) circle.getFill();
-
-		// Remove the current circle
-		circle.setFill(Color.TRANSPARENT);
-
-		// Create and add 4 smaller circles
-		for (int i = 0; i < 4; i++) {
-			Circle smallerCircle = new Circle();
-			// Update attributes of each circle
-			// Logic that positions each circle in its expected spots
-			smallerCircle.setCenterX(x+(i%2==0 ? -1 : 1)*newRadius);
-			smallerCircle.setCenterY(y+(i/2==0 ? -1 : 1)*newRadius);
-			smallerCircle.setRadius(newRadius);
-			smallerCircle.setFill(color);
-
-			// Draws the circle on the scene
-			((Pane) circle.getParent()).getChildren().add(smallerCircle);
-
-			// Mouse event handler for circle splitting
-			smallerCircle.setOnMouseEntered(event -> {
-				if(!smallerCircle.getProperties().containsKey("split")) {
-					smallerCircle.getProperties().put("split", true);
-					splitCircle(smallerCircle, depth+1);
-				}
-			});
-
-		}
 	}
 
 	public static void main(String[] args) {
