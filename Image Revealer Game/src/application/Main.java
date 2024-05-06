@@ -7,17 +7,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -70,7 +65,7 @@ public class Main extends Application {
 			text.setText("Hey there! Pick a category below to get started.");
 			text.setX(100); text.setY(100);
       
-      // Buttons for all categories
+			// Buttons for all categories
 			Button historyButton = new Button("Historical Figures");
 			historyButton.setLayoutX(150); historyButton.setLayoutY(600);
 			Button celebButton = new Button("Celebrities");
@@ -80,7 +75,7 @@ public class Main extends Application {
 			Button fruitButton = new Button("Fruits");
 			fruitButton.setLayoutX(500); fruitButton.setLayoutY(600);
       
-      // History category
+			// History category
 			EventHandler<ActionEvent> history_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -90,7 +85,7 @@ public class Main extends Application {
 				} 
 			}; 
       
-      // Celebrity category
+			// Celebrity category
 			EventHandler<ActionEvent> celeb_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -100,7 +95,7 @@ public class Main extends Application {
 				} 
 			}; 
       
-      // Animal category
+			// Animal category
 			EventHandler<ActionEvent> animal_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -110,7 +105,7 @@ public class Main extends Application {
 				} 
 			}; 
       
-      // Fruit category
+			// Fruit category
 			EventHandler<ActionEvent> fruit_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
@@ -120,13 +115,13 @@ public class Main extends Application {
 				} 
 			}; 
       
-      // Initialize actions for buttons
+			// Initialize actions for buttons
 			historyButton.setOnAction(history_event);
 			celebButton.setOnAction(celeb_event);
 			animalButton.setOnAction(animal_event);
 			fruitButton.setOnAction(fruit_event);
       
-      // Render buttons on intro screen
+			// Render buttons on intro screen
 			introScreen.getChildren().add(text);
 			introScreen.getChildren().add(circle);
 			introScreen.getChildren().add(celebButton);
@@ -145,7 +140,6 @@ public class Main extends Application {
 		}
 		stage.setTitle("Guess Who");
 		stage.show();
-	}
 	}
 
 	public static void main(String[] args) {
