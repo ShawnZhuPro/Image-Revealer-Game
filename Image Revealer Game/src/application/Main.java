@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -13,6 +14,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -23,6 +25,9 @@ public class Main extends Application {
 	int circlesSplit = 0;
 	int state = -1;
 
+	/**
+	 *
+	 */
 	@Override
 	public void start(Stage stage) {
 		if (state==-1) {
@@ -30,6 +35,12 @@ public class Main extends Application {
 			Stop[] stops = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
 			LinearGradient g = new LinearGradient(0,0,maxSize,maxSize, false, CycleMethod.REFLECT, stops);
 			Scene startScreen1 = new Scene(startScreen, maxSize, maxSize, g);
+			Label l = new Label("The Image Revealer Game");
+			l.setStyle("-fx-border-color: black; -fx-padding: 10");
+			l.setFont(new Font(40.0));
+			l.setLayoutX(150);
+			l.setLayoutY(200);
+			startScreen.getChildren().add(l);
 			stage.setTitle("Welcome");
 			stage.setScene(startScreen1);
 		}
