@@ -21,7 +21,7 @@ public class Main extends Application {
 
 	int targetDepth = 7; // Max # of iterations for splitCircle() method
 	int maxSize = 1024;   // Max size of the scene
-	int state = -1;
+	int state = 0;
 
 	/**
 	 *
