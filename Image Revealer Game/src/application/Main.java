@@ -132,9 +132,11 @@ public class Main extends Application {
 		}
 		
 		if (state==1) {
+
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
-			new ImageToCircleSplitter("file:./src/Images/FDR.png", root, maxSize, targetDepth);
+			new ImageToCircleSplitter("file:./src/Images/Presidents/GW.png", root, maxSize, targetDepth);
+
         
       stage.setScene(scene);
 		}
