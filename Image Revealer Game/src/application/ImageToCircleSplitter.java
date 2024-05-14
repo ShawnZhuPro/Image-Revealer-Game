@@ -5,6 +5,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 public class ImageToCircleSplitter {
 	private Image image;
@@ -23,12 +24,15 @@ public class ImageToCircleSplitter {
 	}
 	
 	private void initialize() {
+
 		// Initialize initial big circle
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
         Color avgColor = extractAvg(image, 0, 0, width, height);
         Circle bigCircle = new Circle(maxSize / 2, maxSize / 2, maxSize / 4, avgColor);
         root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
+        
+		
 
         // Add mouse event handler for splitting the big starter circle
         // This mouse event occurs when the cursor "enters" a circle
@@ -36,7 +40,6 @@ public class ImageToCircleSplitter {
         	// If the circle being entered isn't already split, we classify it as now a split circle
             if (!bigCircle.getProperties().containsKey("split")) {
                 bigCircle.getProperties().put("split", true);
-                circlesSplit++;
                 splitCircle(image, bigCircle, 0, 0, 0, width, height);
             }
         });
@@ -48,8 +51,13 @@ public class ImageToCircleSplitter {
             return;
         }
         
+        // Display circles split on screen
         circlesSplit++;
+        Text text = new Text(500, 100, "Circles split: " + getCirclesSplit());
+        root.getChildren().add(text);
+
         System.out.println(circlesSplit);
+        
         double newRadius = circle.getRadius() / 2;
         double x = circle.getCenterX();
         double y = circle.getCenterY();
