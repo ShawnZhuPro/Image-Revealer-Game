@@ -142,7 +142,7 @@ public class Main extends Application {
 		
 		if (state==1) {
 			String[] pres_locs = {"file:./Image Revealer Game/src/Images/Presidents/GW-1.png", "file:./Image Revealer Game/src/Images/Presidents/JA-2.png", "file:./Image Revealer Game/src/Images/Presidents/JM-4.png", "file:./Image Revealer Game/src/Images/Presidents/JM-5.png", "file:./Image Revealer Game/src/Images/Presidents/TJ-3.png"};
-			int random_img = (int)(Math.random()*5);
+			int random_img = (int)(Math.random()*pres_locs.length);
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(pres_locs[random_img], root, maxSize, targetDepth);
@@ -151,7 +151,7 @@ public class Main extends Application {
 		}
 		if (state==2) {
 			String[] celeb_locs = {"file:./Image Revealer Game/src/Images/Celebrities/Brad_Pitt-3.jpg", "file:./Image Revealer Game/src/Images/Celebrities/Kevin_Hart-4.png", "file:./Image Revealer Game/src/Images/Celebrities/Lebron_James-5.png", "file:./Image Revealer Game/src/Images/Celebrities/Matthew_Mccounagey-2.png", "file:./Image Revealer Game/src/Images/Celebrities/Robert_Downey_Jr-1.jpg"};
-			int random_img2 = (int)(Math.random()*5);
+			int random_img2 = (int)(Math.random()*celeb_locs.length);
 			Pane root2 = new Pane();
 			Scene scene2 = new Scene(root2, maxSize, maxSize);
 			new ImageToCircleSplitter(celeb_locs[random_img2], root2, maxSize, targetDepth);
@@ -160,7 +160,7 @@ public class Main extends Application {
 		}
 		if (state==3) {
 			String[] animal_locs = {"file:./Image Revealer Game/src/Images/Animals/Eagle-4.png", "file:./Image Revealer Game/src/Images/Animal/Lion-3.png", "file:./Image Revealer Game/src/Images/Animals/Panda-1.png", "file:./Image Revealer Game/src/Images/Animals/Rhino-5.png", "file:./Image Revealer Game/src/Images/Animals/Tiger-2.png"};
-			int random_img3 = (int)(Math.random()*5);
+			int random_img3 = (int)(Math.random()*animal_locs.length);
 			Pane root3 = new Pane();
 			Scene scene3 = new Scene(root3, maxSize, maxSize);
 			new ImageToCircleSplitter(animal_locs[random_img3], root3, maxSize, targetDepth);
@@ -169,7 +169,7 @@ public class Main extends Application {
 		}
 		if (state==4) {
 			String[] fruit_locs = {"file:./Image Revealer Game/src/Images/Fruits/Apple-1.png", "file:./Image Revealer Game/src/Images/Fruits/Banana-2.png", "file:./Image Revealer Game/src/Images/Fruits/Grape-5.png", "file:./Image Revealer Game/src/Images/Fruits/Kiwi-4.png", "file:./Image Revealer Game/src/Images/Fruits/Orange-3.png"};
-			int random_img4 = (int)(Math.random()*5);
+			int random_img4 = (int)(Math.random()*fruit_locs.length);
 			Pane root4 = new Pane();
 			Scene scene4 = new Scene(root4, maxSize, maxSize);
 			new ImageToCircleSplitter(fruit_locs[random_img4], root4, maxSize, targetDepth);
