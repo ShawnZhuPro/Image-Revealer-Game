@@ -33,7 +33,7 @@ public class Main extends Application {
 			Stop[] stops = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
 			LinearGradient g = new LinearGradient(0,0,maxSize,maxSize, false, CycleMethod.REFLECT, stops);
 			Scene startScreen1 = new Scene(startScreen, maxSize, maxSize, g);
-			Label l = new Label("The Image Revealer Game");
+			Label l = new Label("Visionary Voyage");
 			l.setStyle("-fx-border-color: black; -fx-padding: 10");
 			l.setFont(new Font(40.0));
 			l.setLayoutX(150);
