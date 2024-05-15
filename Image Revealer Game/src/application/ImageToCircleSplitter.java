@@ -1,5 +1,6 @@
 package application;
 
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.layout.Pane;
@@ -30,6 +31,9 @@ public class ImageToCircleSplitter {
         int height = (int) image.getHeight();
         Color avgColor = extractAvg(image, 0, 0, width, height);
         Circle bigCircle = new Circle(maxSize / 2, maxSize / 2, maxSize / 4, avgColor);
+        TextField b = new TextField("Enter guess here");
+
+        root.getChildren().add(b);
         root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
         
 		

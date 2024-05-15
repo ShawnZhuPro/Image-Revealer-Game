@@ -134,7 +134,7 @@ public class Main extends Application {
 		if (state==1) {
 
 			Pane root = new Pane();
-			Scene scene = new Scene(root, maxSize, maxSize);
+			Scene scene = new Scene(root, maxSize, maxSize);	        
 			new ImageToCircleSplitter("file:./Image Revealer Game/src/Images/Presidents/GW.png", root, maxSize, targetDepth);
 
         
