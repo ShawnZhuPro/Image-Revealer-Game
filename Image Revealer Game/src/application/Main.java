@@ -21,7 +21,7 @@ public class Main extends Application {
 
 	int targetDepth = 7; // Max # of iterations for splitCircle() method
 	int maxSize = 1024;   // Max size of the scene
-	int state = 0;
+	int state = -1;
 
 	/**
 	 *
@@ -43,13 +43,23 @@ public class Main extends Application {
 		if (state==-1) {
 			Group startScreen = new Group();
 			Stop[] stops = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
-			LinearGradient g = new LinearGradient(0,0,maxSize,maxSize, false, CycleMethod.REFLECT, stops);
-			Scene startScreen1 = new Scene(startScreen, maxSize, maxSize, g);
+			LinearGradient g = new LinearGradient(0,0,800,800, false, CycleMethod.REFLECT, stops);
+			Scene startScreen1 = new Scene(startScreen, 800, 800, g);
 			Label l = new Label("The Image Revealer Game");
-			l.setStyle("-fx-border-color: black; -fx-padding: 10");
+			l.setStyle("-fx-font-family: 'Lucida Calligraphy'; -fx-border-color: black; -fx-padding: 10; -fx-text-fill: 'blue';");
 			l.setFont(new Font(40.0));
 			l.setLayoutX(150);
 			l.setLayoutY(200);
+			Button start = new Button();
+			start.setText("Start");
+			EventHandler<ActionEvent> startButton = new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					state = 0;
+					start(stage);
+				}
+			};
+			start.setOnAction(startButton);
+			startScreen.getChildren().add(start);
 			startScreen.getChildren().add(l);
 			stage.setTitle("Welcome");
 			stage.setScene(startScreen1);
