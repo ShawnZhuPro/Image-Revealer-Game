@@ -45,7 +45,7 @@ public class Main extends Application {
 			Stop[] stops = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
 			LinearGradient g = new LinearGradient(0,0,800,800, false, CycleMethod.REFLECT, stops);
 			Scene startScreen1 = new Scene(startScreen, 800, 800, g);
-			Label l = new Label("The Image Revealer Game");
+			Label l = new Label("Visionary Voyage");
 			l.setStyle("-fx-font-family: 'Lucida Calligraphy'; -fx-border-color: black; -fx-padding: 10; -fx-text-fill: 'blue';");
 			l.setFont(new Font(40.0));
 			l.setLayoutX(150);

@@ -1,5 +1,6 @@
 package application;
 
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.layout.Pane;
@@ -13,6 +14,10 @@ public class ImageToCircleSplitter {
 	private int targetDepth;
 	private int circlesSplit; 
 	private int maxSize;
+	private Text splitCountText;
+	private String userGuess;
+
+
 	
 	public ImageToCircleSplitter(String imagePath, Pane root, int maxSize, int targetDepth) {
 		this.image = new Image(imagePath);
@@ -30,9 +35,26 @@ public class ImageToCircleSplitter {
         int height = (int) image.getHeight();
         Color avgColor = extractAvg(image, 0, 0, width, height);
         Circle bigCircle = new Circle(maxSize / 2, maxSize / 2, maxSize / 4, avgColor);
+        
+        // User guess
+        TextField guessField = new TextField();
+        guessField.setPromptText("Enter your guess here");
+        guessField.setLayoutX(500);  
+        guessField.setLayoutY(50);   
+
+        root.getChildren().add(guessField);
         root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
         
-		
+        // Initialize the Text object for circle splits
+        splitCountText = new Text(500, 100, "Circles split: 0");
+        root.getChildren().add(splitCountText);
+        
+        // User guess action
+        guessField.setOnAction(event -> {
+            userGuess = guessField.getText();
+            System.out.println(userGuess); 
+            guessField.clear(); // Clear the text field after submission
+        });
 
         // Add mouse event handler for splitting the big starter circle
         // This mouse event occurs when the cursor "enters" a circle
@@ -53,8 +75,7 @@ public class ImageToCircleSplitter {
         
         // Display circles split on screen
         circlesSplit++;
-        Text text = new Text(500, 100, "Circles split: " + getCirclesSplit());
-        root.getChildren().add(text);
+        splitCountText.setText("Circles split: " + getCirclesSplit());
 
         System.out.println(circlesSplit);
         
