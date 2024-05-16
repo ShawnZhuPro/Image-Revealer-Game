@@ -59,9 +59,7 @@ public class ImageToCircleSplitter {
     	// Base case
         if (depth >= targetDepth) {
             return;
-        }//
-        
-
+        }
         
         // Display circles split on screen
         circlesSplit++;
