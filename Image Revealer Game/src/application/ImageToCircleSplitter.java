@@ -15,46 +15,34 @@ public class ImageToCircleSplitter {
 	private int circlesSplit; 
 	private int maxSize;
 	private Text splitCountText;
-	private String userGuess;
-
-
 	
-	public ImageToCircleSplitter(String imagePath, Pane root, int maxSize, int targetDepth) {
+	public ImageToCircleSplitter(String imagePath, Pane root, int maxSize, int targetDepth, String answer) {
 		this.image = new Image(imagePath);
 		this.root = root;
 		this.targetDepth = targetDepth;
 		this.circlesSplit = 0;
 		this.maxSize = maxSize;
-		initialize();
+		initialize(answer);
 	}
 	
-	private void initialize() {
+	private void initialize(String answer) {
 
 		// Initialize initial big circle
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
         Color avgColor = extractAvg(image, 0, 0, width, height);
         Circle bigCircle = new Circle(maxSize / 2, maxSize / 2, maxSize / 4, avgColor);
-        
-        // User guess
-        TextField guessField = new TextField();
-        guessField.setPromptText("Enter your guess here");
-        guessField.setLayoutX(500);  
-        guessField.setLayoutY(50);   
 
-        root.getChildren().add(guessField);
         root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
         
         // Initialize the Text object for circle splits
         splitCountText = new Text(500, 100, "Circles split: 0");
         root.getChildren().add(splitCountText);
         
-        // User guess action
-        guessField.setOnAction(event -> {
-            userGuess = guessField.getText();
-            System.out.println(userGuess); 
-            guessField.clear(); // Clear the text field after submission
-        });
+        new Guess(root, answer);
+        if(Guess.getUserGuess() != null) {
+            System.out.println(Guess.isCorrect());
+        }
 
         // Add mouse event handler for splitting the big starter circle
         // This mouse event occurs when the cursor "enters" a circle
@@ -73,6 +61,8 @@ public class ImageToCircleSplitter {
             return;
         }
         
+
+        
         // Display circles split on screen
         circlesSplit++;
         splitCountText.setText("Circles split: " + getCirclesSplit());
@@ -85,7 +75,7 @@ public class ImageToCircleSplitter {
 
         
         // X and Y directions for circles
-        int[] dx = {-1, 1, -1, 1};//
+        int[] dx = {-1, 1, -1, 1};
         int[] dy = {-1, -1, 1, 1};
 
         // Create and add 4 smaller circles
@@ -110,7 +100,6 @@ public class ImageToCircleSplitter {
         			splitCircle(image, smallerCircle, depth+1, newX, newY, newW, newH);
         		}
         	});
-        	
             
             // Remove the current circle
             circle.setFill(Color.TRANSPARENT);
