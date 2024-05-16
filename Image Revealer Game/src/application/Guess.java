@@ -21,12 +21,18 @@ public class Guess {
         guessField.setLayoutY(50);   
         root.getChildren().add(guessField);
         
-        // User guess action
+        // Checks if guess is correct then clears the field then displays guess on screen then redirects to win screen if guess is correct
         guessField.setOnAction(event -> {
             userGuess = guessField.getText();
             System.out.println(userGuess); 
-            guessField.clear(); // Clear the text field after submission
+            System.out.println(isCorrect());
+            guessField.clear(); 
+            
         });
+        
+        
+        
+        
 	}
 	
 	public static String getUserGuess() {
@@ -38,7 +44,7 @@ public class Guess {
 	}
 	
 	public static boolean isCorrect() {
-		return (userGuess.equals(answer));
+		return (userGuess.toLowerCase().equals(answer.toLowerCase()));
 	}
 
 }
