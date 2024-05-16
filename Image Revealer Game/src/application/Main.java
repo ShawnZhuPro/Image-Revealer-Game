@@ -170,7 +170,7 @@ public class Main extends Application {
 			new ImageToCircleSplitter(celeb_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
 			stage.setScene(scene);
-		}
+		}//
 		if (state==3) {
 			String[] animal_locs = {dir + "Animals/Eagle.png", dir + "Animal/Koala.png", dir + "Animal/Lion.png", dir + "Animals/Panda.png", dir + "Animals/Rhino.png", dir + "Animals/Tiger.png"};
 			String[] pres_ans = {"Eagle", "Koala", "Lion", "Panda", "Rhino", "Tiger"};

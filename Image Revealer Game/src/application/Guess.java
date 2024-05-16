@@ -26,7 +26,7 @@ public class Guess {
             userGuess = guessField.getText();
             System.out.println(userGuess); 
             guessField.clear(); // Clear the text field after submission
-        });
+        });//
 	}
 	
 	public static String getUserGuess() {
