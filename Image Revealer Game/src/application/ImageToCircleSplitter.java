@@ -14,6 +14,8 @@ public class ImageToCircleSplitter {
 	private int targetDepth;
 	private int circlesSplit; 
 	private int maxSize;
+	private Text splitCountText;
+
 	
 	public ImageToCircleSplitter(String imagePath, Pane root, int maxSize, int targetDepth) {
 		this.image = new Image(imagePath);
@@ -36,6 +38,10 @@ public class ImageToCircleSplitter {
         root.getChildren().add(b);
         root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
         
+        // Initialize the Text object for circle splits
+        splitCountText = new Text(500, 100, "Circles split: 0");
+        root.getChildren().add(splitCountText);
+        
 		
 
         // Add mouse event handler for splitting the big starter circle
@@ -57,8 +63,7 @@ public class ImageToCircleSplitter {
         
         // Display circles split on screen
         circlesSplit++;
-        Text text = new Text(500, 100, "Circles split: " + getCirclesSplit());
-        root.getChildren().add(text);
+        splitCountText.setText("Circles split: " + getCirclesSplit());
 
         System.out.println(circlesSplit);
         
