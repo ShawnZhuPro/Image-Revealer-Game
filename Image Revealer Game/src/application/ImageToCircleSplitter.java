@@ -47,7 +47,10 @@ public class ImageToCircleSplitter {
         answerButton.setLayoutY(100);
         root.getChildren().add(answerButton);
         
-
+        // Initialize continue button (after answer is shown)
+        Button continueButton = new Button("Continue");
+        continueButton.setLayoutX(600);
+        continueButton.setLayoutY(200);
         
         // Add mouse event handler for splitting the big starter circle
         // This mouse event occurs when the cursor "enters" a circle
@@ -59,13 +62,17 @@ public class ImageToCircleSplitter {
             }
         });
         
-        // Shows answer
+        // Shows answer then continue button to highscores
         answerButton.setOnMouseClicked(event -> {
         	Guess.showAnswer(root);
+        	root.getChildren().add(continueButton);
         });
         
-        
-        
+        // Continue button action
+        continueButton.setOnMouseClicked(event -> {
+        	// Redirects to highscores screen, but user can't enter info to save highscore
+        });
+
 	}
 	
 	private void splitCircle(Image image, Circle circle, int depth, int x0, int y0, int width, int height) {
