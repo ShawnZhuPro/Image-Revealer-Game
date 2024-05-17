@@ -2,6 +2,7 @@ package application;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 public class Guess {
 	private static String userGuess;
@@ -29,10 +30,6 @@ public class Guess {
             guessField.clear(); 
             
         });
-        
-        
-        
-        
 	}
 	
 	public static String getUserGuess() {
@@ -41,6 +38,12 @@ public class Guess {
 	
 	public static String getAnswer() {
 		return answer;
+	}
+	
+	public static void showAnswer(Pane root) {
+        Text answerText = new Text(500, 200, "Answer: " + answer);
+        root.getChildren().add(answerText);
+
 	}
 	
 	public static boolean isCorrect() {

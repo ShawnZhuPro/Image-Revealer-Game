@@ -1,5 +1,6 @@
 package application;
 
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.layout.Pane;
@@ -38,20 +39,15 @@ public class ImageToCircleSplitter {
         splitCountText = new Text(500, 100, "Circles split: 0");
         root.getChildren().add(splitCountText);
         
+        // Initialize static Guess class
         new Guess(root, answer);
         
-//        Thread thread = new Thread(() -> {
-//    		System.out.println("Thread is running");
-//        	if(Guess.getUserGuess() != null) {
-//                System.out.println(Guess.isCorrect());
-//            }
-//     
-//        	
-//        });
-//        thread.start();
+        Button answerButton = new Button("Show Answer");
+        answerButton.setLayoutX(600);
+        answerButton.setLayoutY(100);
         
-  
-
+        root.getChildren().add(answerButton);
+        
         // Add mouse event handler for splitting the big starter circle
         // This mouse event occurs when the cursor "enters" a circle
         bigCircle.setOnMouseEntered(event -> {
@@ -60,6 +56,11 @@ public class ImageToCircleSplitter {
                 bigCircle.getProperties().put("split", true);
                 splitCircle(image, bigCircle, 0, 0, 0, width, height);
             }
+        });
+        
+        // Shows answer
+        answerButton.setOnMouseClicked(event -> {
+        	Guess.showAnswer(root);
         });
 	}
 	
