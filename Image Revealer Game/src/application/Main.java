@@ -171,7 +171,6 @@ public class Main extends Application {
 	        // Skips image
 	        skipButton.setOnMouseClicked(event -> {
 	        	// Go to new image in same category
-	        	state = 1;
 	        	start(stage);
 	        });
 			stage.setScene(scene);
@@ -188,7 +187,6 @@ public class Main extends Application {
 	        // Skips image
 	        skipButton.setOnMouseClicked(event -> {
 	        	// Go to new image in same category
-	        	state = 2;
 	        	start(stage);
 	        });
 			stage.setScene(scene);
@@ -206,7 +204,6 @@ public class Main extends Application {
 	        // Skips image
 	        skipButton.setOnMouseClicked(event -> {
 	        	// Go to new image in same category
-	        	state = 3;
 	        	start(stage);
 	        });
 			stage.setScene(scene);
@@ -223,7 +220,6 @@ public class Main extends Application {
 	        // Skips image
 	        skipButton.setOnMouseClicked(event -> {
 	        	// Go to new image in same category
-	        	state = 4;
 	        	start(stage);
 	        });
 			stage.setScene(scene);
