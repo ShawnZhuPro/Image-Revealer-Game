@@ -29,18 +29,26 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage stage) {
+		// Initialize back button & its action
 		Button backButton = new Button("Go Back");
 		backButton.setLayoutY(900);
 		backButton.setLayoutX(500);
 		EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() { 
 			public void handle(ActionEvent e) 
 			{ 
-				System.out.println("History button selected"); 
 				state = 0;
 				start(stage);
 			} 
 		}; 
 		backButton.setOnAction(back);
+		
+        // Initialize skip button
+        Button skipButton = new Button("Skip Image");
+        skipButton.setLayoutX(600);
+        skipButton.setLayoutY(150);
+
+		
+		
 		if (state==-1) {
 			Group startScreen = new Group();
 			Stop[] stops = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
@@ -159,6 +167,13 @@ public class Main extends Application {
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(pres_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
+	        root.getChildren().add(skipButton);
+	        // Skips image
+	        skipButton.setOnMouseClicked(event -> {
+	        	// Go to new image in same category
+	        	state = 1;
+	        	start(stage);
+	        });
 			stage.setScene(scene);
 		}
 		if (state==2) {
@@ -169,16 +184,31 @@ public class Main extends Application {
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(celeb_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
+	        root.getChildren().add(skipButton);
+	        // Skips image
+	        skipButton.setOnMouseClicked(event -> {
+	        	// Go to new image in same category
+	        	state = 2;
+	        	start(stage);
+	        });
 			stage.setScene(scene);
 		}
 		if (state==3) {
-			String[] animal_locs = {dir + "Animals/Eagle.png", dir + "Animal/Koala.png", dir + "Animal/Lion.png", dir + "Animals/Panda.png", dir + "Animals/Rhino.png", dir + "Animals/Tiger.png"};
+			String[] animal_locs = {dir + "Animals/Eagle.png", dir + "Animals/Koala.png", dir + "Animals/Lion.png", dir + "Animals/Panda.png", dir + "Animals/Rhino.png", dir + "Animals/Tiger.png"};
 			String[] pres_ans = {"Eagle", "Koala", "Lion", "Panda", "Rhino", "Tiger"};
 			int random_img = (int)(Math.random()*animal_locs.length);
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
+			System.out.println(animal_locs[random_img]);
 			new ImageToCircleSplitter(animal_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
+	        root.getChildren().add(skipButton);
+	        // Skips image
+	        skipButton.setOnMouseClicked(event -> {
+	        	// Go to new image in same category
+	        	state = 3;
+	        	start(stage);
+	        });
 			stage.setScene(scene);
 		}
 		if (state==4) {
@@ -189,6 +219,13 @@ public class Main extends Application {
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(fruit_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
+	        root.getChildren().add(skipButton);
+	        // Skips image
+	        skipButton.setOnMouseClicked(event -> {
+	        	// Go to new image in same category
+	        	state = 4;
+	        	start(stage);
+	        });
 			stage.setScene(scene);
 		}
         

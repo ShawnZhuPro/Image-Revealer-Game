@@ -43,7 +43,6 @@ public class Guess {
 	public static void showAnswer(Pane root) {
         Text answerText = new Text(500, 200, "Answer: " + answer);
         root.getChildren().add(answerText);
-
 	}
 	
 	public static boolean isCorrect() {

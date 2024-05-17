@@ -32,7 +32,6 @@ public class ImageToCircleSplitter {
         int height = (int) image.getHeight();
         Color avgColor = extractAvg(image, 0, 0, width, height);
         Circle bigCircle = new Circle(maxSize / 2, maxSize / 2, maxSize / 4, avgColor);
-
         root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
         
         // Initialize the Text object for circle splits
@@ -42,11 +41,13 @@ public class ImageToCircleSplitter {
         // Initialize static Guess class
         new Guess(root, answer);
         
+        // Initialize answer button
         Button answerButton = new Button("Show Answer");
         answerButton.setLayoutX(600);
         answerButton.setLayoutY(100);
-        
         root.getChildren().add(answerButton);
+        
+
         
         // Add mouse event handler for splitting the big starter circle
         // This mouse event occurs when the cursor "enters" a circle
@@ -62,6 +63,9 @@ public class ImageToCircleSplitter {
         answerButton.setOnMouseClicked(event -> {
         	Guess.showAnswer(root);
         });
+        
+        
+        
 	}
 	
 	private void splitCircle(Image image, Circle circle, int depth, int x0, int y0, int width, int height) {
