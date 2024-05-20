@@ -31,8 +31,9 @@ public class Main extends Application {
 	public void start(Stage stage) {
 		// Initialize back button & its action
 		//Generic button template
-		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-border-color: black; -fx-padding: 10; -fx-text-fill: 'blue';";
+		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 20; -fx-text-fill: 'blue';";
 		Button backButton = new Button("Go Back");
+		backButton.setStyle(buttonTemplate);
 		backButton.setLayoutY(900);
 		backButton.setLayoutX(500);
 		EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() { 
@@ -63,6 +64,7 @@ public class Main extends Application {
 			l.setLayoutY(200);
 			Button start = new Button();
 			start.setText("Start");
+			start.setLayoutX(300); start.setLayoutY(600);
 			EventHandler<ActionEvent> startButton = new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
 					state = 0;
@@ -70,6 +72,7 @@ public class Main extends Application {
 				}
 			};
 			start.setOnAction(startButton);
+			startScreen.setStyle(buttonTemplate);
 			startScreen.getChildren().add(start);
 			startScreen.getChildren().add(l);
 			stage.setTitle("Welcome");
@@ -93,8 +96,9 @@ public class Main extends Application {
 			Scene introScreen1 = new Scene(introScreen, maxSize, maxSize, Color.BEIGE);
 			stage.setTitle("Welcome!");
 			Text text = new Text();
-			text.setText("Hey there! Pick a category below to get started.");
-			text.setX(100); text.setY(100);
+			text.setText("Pick a category below to get started. Can you beat the \nhigh score of {highscore}?");
+			text.setFont(new Font(40.0));
+			text.setX(50); text.setY(100);
       
 			// Buttons for all categories
 			Button historyButton = new Button("Historical Figures");
@@ -147,9 +151,13 @@ public class Main extends Application {
       
 			// Initialize actions for buttons
 			historyButton.setOnAction(history_event);
+			historyButton.setStyle(buttonTemplate);
 			celebButton.setOnAction(celeb_event);
+			celebButton.setStyle(buttonTemplate);
 			animalButton.setOnAction(animal_event);
+			animalButton.setStyle(buttonTemplate);
 			fruitButton.setOnAction(fruit_event);
+			fruitButton.setStyle(buttonTemplate);
       
 			// Render buttons on intro screen
 			introScreen.getChildren().add(text);
