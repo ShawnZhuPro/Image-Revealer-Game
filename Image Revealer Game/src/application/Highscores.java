@@ -11,6 +11,8 @@ public class Highscores {
 	private static String highscoreName;
 	private static int highscore;
 	private static String highscoreCategory;
+	private static int circlesSplit;
+	private static int secondsTaken;
 	
 	public Highscores(String fileName, String name, int score, String category) {
 		Highscores.fileName = fileName;
@@ -46,7 +48,7 @@ public class Highscores {
 	}
 	
 	// Scoring algorithm implementation
-	public static int getScore() {
-		return 0;
+	public static double getScore() {
+		return (4096 - circlesSplit) / (secondsTaken);
 	}
 }
