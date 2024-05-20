@@ -30,6 +30,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		// Initialize back button & its action
+		//Generic button template
+		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-border-color: black; -fx-padding: 10; -fx-text-fill: 'blue';";
 		Button backButton = new Button("Go Back");
 		backButton.setLayoutY(900);
 		backButton.setLayoutX(500);
