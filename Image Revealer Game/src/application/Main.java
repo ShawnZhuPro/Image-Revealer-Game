@@ -22,7 +22,7 @@ public class Main extends Application {
 	int targetDepth = 7; // Max # of iterations for splitCircle() method
 	int maxSize = 1024;   // Max size of the scene
 	int state = -1;
-	String dir = "file:./Image Revealer Game/src/Images/";
+	String dir = "file:./Image Revealer Game/src/";
 
 	/**
 	 *
@@ -170,8 +170,12 @@ public class Main extends Application {
 		}
 		
 		if (state==1) {
-			String[] pres_locs = {dir + "Presidents/Donald_Trump.png", dir + "Presidents/George_Washington.png", dir + "Presidents/John_Adams.png", dir + "Presidents/James_Madison.png", dir + "Presidents/Thomas_Jefferson.png"};
-			String[] pres_ans = {"Donald Trump", "George Washington", "John Adams", "James Madison", "Thomas Jefferson"};
+			String[] pres_locs = {dir + "Presidents/BillClinton-8.png", dir + "Presidents/GeorgeWBush-6.png", 
+					dir + "Presidents/GW-1.png", dir + "Presidents/HarryTruman-10.png", dir + "Presidents/JFK-4.png", 
+					dir+"Presidents/JoeBiden-5.png",
+					dir+"Presidents/Obama-3.png", dir+"Presidents/RichardNixon-9.png", dir+"Presidents/RonaldReagen-7.png"};
+			String[] pres_ans = {"Bill Clinton", "George Bush", "George Washington", "Harry Truman", "John F Kennedy", "Joe Biden",
+					"Barack Obama", "Richard Nixon", "Ronald Reagan"};
 			int random_img = (int)(Math.random()*pres_locs.length);
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
@@ -186,8 +190,11 @@ public class Main extends Application {
 			stage.setScene(scene);
 		}
 		if (state==2) {
-			String[] celeb_locs = {dir + "Celebrities/Brad_Pitt.jpg", dir + "Celebrities/Kevin_Hart.png", dir + "Celebrities/Lebron_James.png", dir + "Celebrities/Matthew_Mccounagey.png", dir + "Celebrities/Robert_Downey_Jr.jpg"};
-			String[] pres_ans = {"Brad Pitt", "Kevin Hart", "Lebron James", "Matthew Mccounagey", "Robert Downey Jr"};
+			String[] celeb_locs = {dir + "Celebrities/Andrew_Garfield-10.png", dir + "Celebrities/Brad_Pitt-2.jpg", dir + "Celebrities/Chris_Evans-6.png", dir + "Celebrities/Chris_Hemsworth-7.png", dir + "Celebrities/Kevin_Hart-4.png",
+					dir+"Celebrities/Lebron_James-5.png", dir+"Celebrities/Matthew_Mccounagey-3.png", dir+"Celebrities/Robert_Downey_Jr-1.jpg",
+					dir+"Celebrities/Tom_Holland-8.png", dir+"Celebrities/Zendaya-9.png"};
+			String[] pres_ans = {"Andrew Garfield", "Brad Pitt", "Chris Evans", "Chris Hemsworth", "Kevin Hart", "Lebron James",
+					"Matthew Mccounagey", "Robert Downey Jr", "Tom Holland", "Zendaya"};
 			int random_img = (int)(Math.random()*celeb_locs.length);
 			Pane root = new Pane();
 			Scene scene = new Scene(root, maxSize, maxSize);
