@@ -30,6 +30,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		// Initialize back button & its action
+		Highscores.main(null);
 		Button backButton = new Button("Go Back");
 		backButton.setLayoutY(900);
 		backButton.setLayoutX(500);
