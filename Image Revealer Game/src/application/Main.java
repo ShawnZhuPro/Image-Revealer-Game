@@ -41,8 +41,7 @@ public class Main extends Application {
 		Background bg1 = new Background(bg);
 		Button backButton = new Button("Go Back");
 		backButton.setStyle(buttonTemplate);
-		backButton.setLayoutY(200);
-		backButton.setLayoutX(600);
+		backButton.setLayoutX(600); backButton.setLayoutY(600);
 		EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() { 
 			public void handle(ActionEvent e) 
 			{ 
@@ -54,6 +53,7 @@ public class Main extends Application {
 		
         // Initialize skip button
         Button skipButton = new Button("Skip Image");
+        skipButton.setStyle(buttonTemplate);
         skipButton.setLayoutX(600);
         skipButton.setLayoutY(150);
 
@@ -177,12 +177,11 @@ public class Main extends Application {
 			introScreen.getChildren().add(backButton);
 			stage.setScene(introScreen1);
 		}
-		
 		if (state==1) {
 			String[] pres_locs = {dir + "Presidents/BillClinton-8.png", dir + "Presidents/GeorgeWBush-6.png", 
 					dir + "Presidents/GW-1.png", dir + "Presidents/HarryTruman-10.png", dir + "Presidents/JFK-4.png", 
 					dir+"Presidents/JoeBiden-5.png",
-					dir+"Presidents/Obama-3.png", dir+"Presidents/RichardNixon-9.png", dir+"Presidents/RonaldReagen-7.png"};
+					dir+"Presidents/Obama-3.png", dir+"Presidents/RichardNixon-9.png", dir+"Presidents/RonaldReagan-7.png"};
 			String[] pres_ans = {"Bill Clinton", "George Bush", "George Washington", "Harry Truman", "John F Kennedy", "Joe Biden",
 					"Barack Obama", "Richard Nixon", "Ronald Reagan"};
 			int random_img = (int)(Math.random()*pres_locs.length);
@@ -190,6 +189,8 @@ public class Main extends Application {
 			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(pres_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			backButton.setLayoutY(100);
+			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
 	        root.getChildren().add(skipButton);
 	        // Skips image
@@ -210,6 +211,8 @@ public class Main extends Application {
 			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(celeb_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			backButton.setLayoutY(100);
+			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
 	        root.getChildren().add(skipButton);
 	        // Skips image
@@ -229,8 +232,9 @@ public class Main extends Application {
 			root.setBackground(bg1);
 			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
-			System.out.println(animal_locs[random_img]);
 			new ImageToCircleSplitter(animal_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			backButton.setLayoutY(100);
+			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
 	        root.getChildren().add(skipButton);
 	        // Skips image
@@ -250,6 +254,8 @@ public class Main extends Application {
 			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(fruit_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			backButton.setLayoutY(100);
+			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
 	        root.getChildren().add(skipButton);
 	        // Skips image
