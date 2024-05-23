@@ -7,6 +7,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -31,11 +33,16 @@ public class Main extends Application {
 	public void start(Stage stage) {
 		// Initialize back button & its action
 		//Generic button template
-		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 20; -fx-text-fill: 'blue';";
+		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
+		//Generic gradient to fill all the backgrounds with
+		Stop[] stops1 = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
+		LinearGradient g1 = new LinearGradient(0,0,maxSize, maxSize, false, CycleMethod.REFLECT, stops1);
+		BackgroundFill bg = new BackgroundFill(g1, null, null);
+		Background bg1 = new Background(bg);
 		Button backButton = new Button("Go Back");
 		backButton.setStyle(buttonTemplate);
-		backButton.setLayoutY(900);
-		backButton.setLayoutX(500);
+		backButton.setLayoutY(200);
+		backButton.setLayoutX(600);
 		EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() { 
 			public void handle(ActionEvent e) 
 			{ 
@@ -58,9 +65,8 @@ public class Main extends Application {
 			LinearGradient g = new LinearGradient(0,0,800,800, false, CycleMethod.REFLECT, stops);
 			Scene startScreen1 = new Scene(startScreen, 800, 800, g);
 			Label l = new Label("Visionary Voyage");
-			l.setStyle("-fx-font-family: 'Lucida Calligraphy'; -fx-border-color: black; -fx-padding: 10; -fx-text-fill: 'blue';");
-			l.setFont(new Font(40.0));
-			l.setLayoutX(150);
+			l.setStyle("-fx-font-family: 'Lucida Calligraphy'; -fx-font-size: 60; -fx-border-color: black; -fx-padding: 10; -fx-text-fill: 'blue';");
+			l.setLayoutX(100);
 			l.setLayoutY(200);
 			Button start = new Button();
 			start.setText("Start");
@@ -93,7 +99,8 @@ public class Main extends Application {
 				-7 wonders
 			 */
 			Group introScreen = new Group();
-			Scene introScreen1 = new Scene(introScreen, maxSize, maxSize, Color.BEIGE);
+			Scene introScreen1 = new Scene(introScreen, maxSize, maxSize);
+			introScreen1.setFill(g1);
 			stage.setTitle("Welcome!");
 			Text text = new Text();
 			text.setText("Pick a category below to get started. Can you beat the \nhigh score of {highscore}?");
@@ -101,7 +108,7 @@ public class Main extends Application {
 			text.setX(50); text.setY(100);
       
 			// Buttons for all categories
-			Button historyButton = new Button("Historical Figures");
+			Button historyButton = new Button("Presidents");
 			historyButton.setLayoutX(150); historyButton.setLayoutY(600);
 			Button celebButton = new Button("Celebrities");
 			celebButton.setLayoutX(300); celebButton.setLayoutY(600);
@@ -156,8 +163,10 @@ public class Main extends Application {
 			celebButton.setStyle(buttonTemplate);
 			animalButton.setOnAction(animal_event);
 			animalButton.setStyle(buttonTemplate);
+			animalButton.setLayoutX(animalButton.getLayoutX()+50);
 			fruitButton.setOnAction(fruit_event);
 			fruitButton.setStyle(buttonTemplate);
+			fruitButton.setLayoutX(fruitButton.getLayoutX()+100);
       
 			// Render buttons on intro screen
 			introScreen.getChildren().add(text);
@@ -178,6 +187,7 @@ public class Main extends Application {
 					"Barack Obama", "Richard Nixon", "Ronald Reagan"};
 			int random_img = (int)(Math.random()*pres_locs.length);
 			Pane root = new Pane();
+			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(pres_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
@@ -197,6 +207,7 @@ public class Main extends Application {
 					"Matthew Mccounagey", "Robert Downey Jr", "Tom Holland", "Zendaya"};
 			int random_img = (int)(Math.random()*celeb_locs.length);
 			Pane root = new Pane();
+			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(celeb_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
@@ -209,10 +220,14 @@ public class Main extends Application {
 			stage.setScene(scene);
 		}
 		if (state==3) {
-			String[] animal_locs = {dir + "Animals/Eagle.png", dir + "Animals/Koala.png", dir + "Animals/Lion.png", dir + "Animals/Panda.png", dir + "Animals/Rhino.png", dir + "Animals/Tiger.png"};
-			String[] pres_ans = {"Eagle", "Koala", "Lion", "Panda", "Rhino", "Tiger"};
+			String[] animal_locs = {dir+"Animals/Dog-10.jpg", dir+"Animals/Eagle-4.png", dir+"Animals/Fox-9.jpg", dir+"Animals/Lion-3.png",
+					dir+"Animals/Panda-1.png", dir+"Animals/Rhino-5.png", dir+"Animals/Shark-8.jpg", dir+"Tiger-2.png",
+					dir+"Animals/Vulture-7.jpg", dir+"Animals/Zebra-6.jpg"};
+			String[] pres_ans = {"Dog", "Eagle", "Fox", "Lion", "Panda", "Rhino", "Shark", "Tiger", "Vulture", "Zebra"};
 			int random_img = (int)(Math.random()*animal_locs.length);
 			Pane root = new Pane();
+			root.setBackground(bg1);
+			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
 			System.out.println(animal_locs[random_img]);
 			new ImageToCircleSplitter(animal_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
@@ -226,10 +241,13 @@ public class Main extends Application {
 			stage.setScene(scene);
 		}
 		if (state==4) {
-			String[] fruit_locs = {dir + "Fruits/Apple.png", dir + "Fruits/Banana.png", dir + "Fruits/Grape.png", dir + "Fruits/Kiwi.png", dir + "Fruits/Orange.png"};
-			String[] pres_ans = {"Apple", "Banana", "Grape", "Kiwi", "Orange"};
+			String[] fruit_locs = {dir + "Fruits/Apple-1.png", dir + "Fruits/Banana-2.png", dir + "Fruits/Dragonfruit-6.jpg", dir + "Fruits/Durian-8.jpg", dir + "Fruits/Grape-5.png",
+					dir+"Fruits/Jackfruit-9.jpg", dir+"Fruits/Kiwi-4.png", dir+"Fruits/Lychee-10.jpg", dir+"Fruits/Orange-3.png", dir+"Fruits/Passionfruit-7.jpg"};
+			String[] pres_ans = {"Apple", "Banana", "Dragonfruit", "Durian", 
+					"Grape", "Jackfruit", "Kiwi", "Lychee", "Orange", "Passionfruit"};
 			int random_img = (int)(Math.random()*fruit_locs.length);
 			Pane root = new Pane();
+			root.setBackground(bg1);
 			Scene scene = new Scene(root, maxSize, maxSize);
 			new ImageToCircleSplitter(fruit_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
 			root.getChildren().add(backButton);
