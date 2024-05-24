@@ -74,6 +74,7 @@ public class ImageToCircleSplitter {
 		// Continue button action
 		continueButton.setOnMouseClicked(event -> {
 			// Redirects to highscores screen, but user can't enter info to save highscore
+			
 		});
 
 	}

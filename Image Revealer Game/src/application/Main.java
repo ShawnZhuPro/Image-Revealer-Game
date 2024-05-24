@@ -39,7 +39,6 @@ public class Main extends Application {
 		LinearGradient g1 = new LinearGradient(0,0,maxSize, maxSize, false, CycleMethod.REFLECT, stops1);
 		BackgroundFill bg = new BackgroundFill(g1, null, null);
 		Background bg1 = new Background(bg);
-		Highscores.main(null);
 		Button backButton = new Button("Go Back");
 		backButton.setStyle(buttonTemplate);
 		backButton.setLayoutX(600); backButton.setLayoutY(600);
@@ -218,8 +217,8 @@ public class Main extends Application {
 	        root.getChildren().add(skipButton);
 	        // Skips image
 	        skipButton.setOnMouseClicked(event -> {
-	        	// Go to new image in same category
-	        	start(stage);
+	        // Go to new image in same category
+	        start(stage);
 	        });
 			stage.setScene(scene);
 		}
