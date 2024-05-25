@@ -7,36 +7,48 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Highscores {
-    private static String fileName;
+    private String fileName;
     private static ArrayList<String[]> highScores;
 
     public Highscores(String fileName) {
         this.fileName = fileName;
-        this.highScores = new ArrayList<>();
+        Highscores.highScores = new ArrayList<>();
         initialize();
     }
 
     // Load highscores from the file
-    private static void initialize() {
+    private void initialize() {
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] data = line.split(",");
-                highScores.add(data);
+                if (data.length == 4 && isNumeric(data[2]) && isNumeric(data[3])) {
+                    highScores.add(data);
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred while loading high scores: " + e.getMessage());
         }
     }
+    
+    // Check if a string is numeric
+    private static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     // Add a new highscore and save it to the file
-    public static void addHighScore(String name, String category, int score) {
-        highScores.add(new String[]{name, category, String.valueOf(score)});
-        Highscores.saveHighScores();
+    public void addHighscore(String name, String category, int score, int time) {
+        highScores.add(new String[]{name, category, String.valueOf(score), String.valueOf(time)});
+        saveHighscores();
     }
 
     // Save static highscores to the file
-    private static void saveHighScores() {
+    private void saveHighscores() {
         try (PrintWriter writer = new PrintWriter(fileName)) {
             for (String[] entry : highScores) {
                 writer.println(String.join(",", entry));
@@ -45,32 +57,33 @@ public class Highscores {
             System.out.println("An error occurred while saving high scores: " + e.getMessage());
         }
     }
-
-    // Display high scores
-    public static void displayHighScores() {
+    
+    // Get high scores as a list of formatted strings for display, sorted by score
+    public ArrayList<String> getHighscores() {
+    	// Sorts list
+    	highScores.sort((a, b) -> Integer.compare(Integer.parseInt(b[2]), Integer.parseInt(a[2])));
+        ArrayList<String> formattedScores = new ArrayList<>();
         for (String[] entry : highScores) {
-            System.out.println("Name: " + entry[0] + ", Category: " + entry[1] + ", Score: " + entry[2]);
+            formattedScores.add("Name: " + entry[0] + ", Category: " + entry[1] + ", Score: " + entry[2] + ", Time: " + entry[3]);
         }
+        return formattedScores;
+    }
+    
+    // Get	the last added high score
+    public String getLastHighscore() {
+        String[] lastEntry = highScores.get(highScores.size() - 1);
+        return "Name: " + lastEntry[0] + ", Category: " + lastEntry[1] + ", Score: " + lastEntry[2] + ", Time: " + lastEntry[3];
     }
 
     // Update user score details
-    public static void updateScoreDetails(int circlesSplit, int secondsTaken, String name, String category) {
-        int score = Highscores.calculateScore(circlesSplit, secondsTaken);
-        addHighScore(name, category, score);
+    public void updateScoreDetails(int circlesSplit, int secondsTaken, String name, String category) {
+        int score = calculateScore(circlesSplit, secondsTaken);
+        addHighscore(name, category, score, secondsTaken);
     }
 
     // Scoring algorithm implementation
-    private static int calculateScore(int circlesSplit, int secondsTaken) {
+    public int calculateScore(int circlesSplit, int secondsTaken) {
         return (4096 - circlesSplit) / secondsTaken;
     }
 
-//    // Main method to demonstrate functionality (for testing purposes)
-//    public static void main(String[] args) {
-//        Highscores highscores = new Highscores("highscores.csv");
-//
-//        // Simulate user details
-//        highscores.updateScoreDetails(500, 120, "User1", "Category1");
-//
-//        highscores.displayHighScores();
-//    }
 }

@@ -1,5 +1,8 @@
 package application;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
@@ -7,25 +10,26 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class ImageToCircleSplitter {
 	private Image image;
 	private Pane root;
 	private int targetDepth;
-	private int circlesSplit; 
+	private static int circlesSplit; 
 	private int maxSize;
 	private Text splitCountText;
 
-	public ImageToCircleSplitter(String imagePath, Pane root, int maxSize, int targetDepth, String answer) {
+	public ImageToCircleSplitter(String imagePath, Pane root, int maxSize, int targetDepth, String answer, String category) {
 		this.image = new Image(imagePath);
 		this.root = root;
 		this.targetDepth = targetDepth;
-		this.circlesSplit = 0;
+		ImageToCircleSplitter.circlesSplit = 0;
 		this.maxSize = maxSize;
-		initialize(answer);
+		initialize(answer, category);
 	}
 
-	private void initialize(String answer) {
+	private void initialize(String answer, String category) {
 		//Generic button template
 		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
 		// Initialize initial big circle
@@ -40,7 +44,7 @@ public class ImageToCircleSplitter {
 		root.getChildren().add(splitCountText);
 
 		// Initialize static Guess class
-		new Guess(root, answer);
+		new Guess(root, answer, category);
 
 		// Initialize answer button
 		Button answerButton = new Button("Show Answer");
@@ -67,6 +71,7 @@ public class ImageToCircleSplitter {
 
 		// Shows answer then continue button to highscores
 		answerButton.setOnMouseClicked(event -> {
+			circlesSplit = 4096;
 			Guess.showAnswer(root);
 			root.getChildren().add(continueButton);
 		});
@@ -74,8 +79,22 @@ public class ImageToCircleSplitter {
 		// Continue button action
 		continueButton.setOnMouseClicked(event -> {
 			// Redirects to highscores screen, but user can't enter info to save highscore
-			
+		    Pane winPane = new Pane();
+			Guess.showLeaderboard(winPane);
 		});
+		
+		// Add a text to display elapsed time
+	    Text elapsedTimeText = new Text("Time Elapsed: 0 seconds");
+	    elapsedTimeText.setLayoutX(300);
+	    elapsedTimeText.setLayoutY(250);
+	    root.getChildren().add(elapsedTimeText);
+
+	    // Start a timeline to update elapsed time text every second
+	    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+	        elapsedTimeText.setText("Time Elapsed: " + Guess.getElapsedTime() + " seconds");
+	    }));
+	    timeline.setCycleCount(Animation.INDEFINITE);
+	    timeline.play();
 
 	}
 
@@ -157,7 +176,7 @@ public class ImageToCircleSplitter {
 		return Color.rgb((int) (sumR / count), (int) (sumG / count), (int) (sumB / count));
 	}
 
-	public int getCirclesSplit() {
-		return this.circlesSplit;
+	public static int getCirclesSplit() {
+		return ImageToCircleSplitter.circlesSplit;
 	}
 }

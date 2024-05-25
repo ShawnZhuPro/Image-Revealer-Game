@@ -25,12 +25,17 @@ public class Main extends Application {
 	int maxSize = 1024;   // Max size of the scene
 	int state = -1;
 	String dir = "file:./Image Revealer Game/src/";
+    private static Stage primaryStage;
+
 
 	/**
 	 *
 	 */
 	@Override
 	public void start(Stage stage) {
+		Main.primaryStage = stage;
+		Pane root = new Pane();
+		Scene scene = new Scene(root, maxSize, maxSize);
 		// Initialize back button & its action
 		//Generic button template
 		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
@@ -185,10 +190,8 @@ public class Main extends Application {
 			String[] pres_ans = {"Bill Clinton", "George Bush", "George Washington", "Harry Truman", "John F Kennedy", "Joe Biden",
 					"Barack Obama", "Richard Nixon", "Ronald Reagan"};
 			int random_img = (int)(Math.random()*pres_locs.length);
-			Pane root = new Pane();
 			root.setBackground(bg1);
-			Scene scene = new Scene(root, maxSize, maxSize);
-			new ImageToCircleSplitter(pres_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			new ImageToCircleSplitter(pres_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img], "Presidents");
 			backButton.setLayoutY(100);
 			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
@@ -207,18 +210,16 @@ public class Main extends Application {
 			String[] pres_ans = {"Andrew Garfield", "Brad Pitt", "Chris Evans", "Chris Hemsworth", "Kevin Hart", "Lebron James",
 					"Matthew Mccounagey", "Robert Downey Jr", "Tom Holland", "Zendaya"};
 			int random_img = (int)(Math.random()*celeb_locs.length);
-			Pane root = new Pane();
 			root.setBackground(bg1);
-			Scene scene = new Scene(root, maxSize, maxSize);
-			new ImageToCircleSplitter(celeb_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			new ImageToCircleSplitter(celeb_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img], "Celebrities");
 			backButton.setLayoutY(100);
 			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
 	        root.getChildren().add(skipButton);
 	        // Skips image
 	        skipButton.setOnMouseClicked(event -> {
-	        // Go to new image in same category
-	        start(stage);
+		        // Go to new image in same category
+		        start(stage);
 	        });
 			stage.setScene(scene);
 		}
@@ -228,11 +229,8 @@ public class Main extends Application {
 					dir+"Animals/Vulture-7.jpg", dir+"Animals/Zebra-6.jpg"};
 			String[] pres_ans = {"Dog", "Eagle", "Fox", "Lion", "Panda", "Rhino", "Shark", "Tiger", "Vulture", "Zebra"};
 			int random_img = (int)(Math.random()*animal_locs.length);
-			Pane root = new Pane();
 			root.setBackground(bg1);
-			root.setBackground(bg1);
-			Scene scene = new Scene(root, maxSize, maxSize);
-			new ImageToCircleSplitter(animal_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			new ImageToCircleSplitter(animal_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img], "Animals");
 			backButton.setLayoutY(100);
 			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
@@ -250,10 +248,8 @@ public class Main extends Application {
 			String[] pres_ans = {"Apple", "Banana", "Dragonfruit", "Durian", 
 					"Grape", "Jackfruit", "Kiwi", "Lychee", "Orange", "Passionfruit"};
 			int random_img = (int)(Math.random()*fruit_locs.length);
-			Pane root = new Pane();
 			root.setBackground(bg1);
-			Scene scene = new Scene(root, maxSize, maxSize);
-			new ImageToCircleSplitter(fruit_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img]);
+			new ImageToCircleSplitter(fruit_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img], "Fruits");
 			backButton.setLayoutY(100);
 			backButton.setLayoutX(500);
 			root.getChildren().add(backButton);
@@ -270,6 +266,10 @@ public class Main extends Application {
 		stage.setTitle("Guess Who");
 		stage.show();
 	}
+	
+	public static void changeRoot(Pane newRoot) {
+        primaryStage.getScene().setRoot(newRoot);
+    }
 
 	public static void main(String[] args) {
 		launch(args);

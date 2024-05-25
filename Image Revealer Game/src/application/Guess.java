@@ -3,6 +3,7 @@ package application;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -11,15 +12,20 @@ import javafx.scene.text.Text;
 
 public class Guess {
 	private static String userGuess;
+	private static String category;
 	private static String answer;
 	private static VBox guessBox;
 	private static Queue<String> guessHistory;
+    private static long startTime;
 
-	public Guess(Pane root, String answer) {
+
+	public Guess(Pane root, String answer, String category) {
 		Guess.answer = answer;
 		Guess.guessBox = new VBox(5);
 		Guess.guessHistory = new LinkedList<>();
+		Guess.category = category;
 		initialize(root);
+		startTimer();
 	}
 
 
@@ -35,8 +41,7 @@ public class Guess {
         guessField.setOnAction(event -> {
             userGuess = guessField.getText();
             addGuess(userGuess);
-            System.out.println(userGuess); 
-            System.out.println(isCorrect());
+            isCorrect(category);
             guessField.clear();
         });
         
@@ -47,6 +52,15 @@ public class Guess {
         scrollPane.setPrefSize(200, 500); 
         root.getChildren().add(scrollPane);
 	}
+	
+	private static void startTimer() {
+        startTime = System.currentTimeMillis();
+    }
+	
+	public static int getElapsedTime() {
+        return (int) (System.currentTimeMillis() - startTime) / 1000; // convert to seconds
+    }
+
 	
 	public static String getUserGuess() {
 		return userGuess;
@@ -75,8 +89,71 @@ public class Guess {
         }
     }
 	
-	public static boolean isCorrect() {
-		return (userGuess.toLowerCase().equals(answer.toLowerCase()));
+	public static boolean isCorrect(String category) {
+		if (userGuess.toLowerCase().equals(answer.toLowerCase())) {
+	        showWinScreen(category);
+	        return true;
+	    }
+	    return false;
+	}
+	
+	private static void showWinScreen(String category) {
+	    // Create a new pane for the win screen
+	    Pane winPane = new Pane();
+	    // Add the winPane to the main application scene
+	    Main.changeRoot(winPane);
+	    
+	    // Display a message
+	    Text winMessage = new Text(300, 100, "Congratulations! You've guessed correctly!");
+	    winMessage.setStyle("-fx-font-size: 24px; -fx-font-family: 'Arial';");
+	    winPane.getChildren().add(winMessage);
+	    
+	    // Add a text field for username input
+	    TextField usernameField = new TextField();
+	    usernameField.setPromptText("Enter your username");
+	    usernameField.setLayoutX(300);
+	    usernameField.setLayoutY(150);
+	    winPane.getChildren().add(usernameField);
+	    
+	    // Add a submit button
+	    Button submitButton = new Button("Submit");
+	    submitButton.setLayoutX(300);
+	    submitButton.setLayoutY(200);
+	    winPane.getChildren().add(submitButton);
+	    
+	    
+
+	    // Handle submit button click
+	    submitButton.setOnAction(event -> {
+	        String username = usernameField.getText();
+	        Highscores highscores = new Highscores("highscores.csv");
+	        int secondsTaken = getElapsedTime();
+            highscores.addHighscore(username, category, highscores.calculateScore(ImageToCircleSplitter.getCirclesSplit(), secondsTaken), secondsTaken);
+	        showLeaderboard(winPane);
+	    });
+	}
+	
+	public static void showLeaderboard(Pane root) {
+        Highscores highscores = new Highscores("highscores.csv");
+
+	    VBox leaderboardBox = new VBox(5);
+	    ScrollPane scrollPane = new ScrollPane(leaderboardBox);
+	    scrollPane.setLayoutX(300);
+	    scrollPane.setLayoutY(250);
+	    scrollPane.setPrefSize(300, 200);
+	    root.getChildren().add(scrollPane);
+	    
+
+        // Display the last added high score separately
+        Text lastScore = new Text(highscores.getLastHighscore());
+        lastScore.setStyle("-fx-font-weight: bold; -fx-font-size: 18px;");
+        leaderboardBox.getChildren().add(lastScore);
+
+	    // Fetch and display high scores in sorted order
+        for (String highscore : highscores.getHighscores()) {
+            leaderboardBox.getChildren().add(new Text(highscore));
+        }
+
 	}
 
 }
