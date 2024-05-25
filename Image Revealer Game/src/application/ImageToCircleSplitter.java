@@ -80,7 +80,8 @@ public class ImageToCircleSplitter {
 		continueButton.setOnMouseClicked(event -> {
 			// Redirects to highscores screen, but user can't enter info to save highscore
 		    Pane winPane = new Pane();
-			Guess.showLeaderboard(winPane);
+		    Main.changeRoot(winPane);
+			Guess.showLeaderboard(winPane, true);
 		});
 		
 		// Add a text to display elapsed time

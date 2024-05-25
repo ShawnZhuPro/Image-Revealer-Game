@@ -129,11 +129,11 @@ public class Guess {
 	        Highscores highscores = new Highscores("highscores.csv");
 	        int secondsTaken = getElapsedTime();
             highscores.addHighscore(username, category, highscores.calculateScore(ImageToCircleSplitter.getCirclesSplit(), secondsTaken), secondsTaken);
-	        showLeaderboard(winPane);
+	        showLeaderboard(winPane, false);
 	    });
 	}
 	
-	public static void showLeaderboard(Pane root) {
+	public static void showLeaderboard(Pane root, boolean cheated) {
         Highscores highscores = new Highscores("highscores.csv");
 
 	    VBox leaderboardBox = new VBox(5);
@@ -143,12 +143,15 @@ public class Guess {
 	    scrollPane.setPrefSize(300, 200);
 	    root.getChildren().add(scrollPane);
 	    
-
-        // Display the last added high score separately
-        Text lastScore = new Text(highscores.getLastHighscore());
-        lastScore.setStyle("-fx-font-weight: bold; -fx-font-size: 18px;");
-        leaderboardBox.getChildren().add(lastScore);
-
+	    if(!cheated) {
+	        // Display the last added high score separately
+	        Text lastScore = new Text(highscores.getLastHighscore());
+	        lastScore.setStyle("-fx-font-weight: bold; -fx-font-size: 18px;");
+	        leaderboardBox.getChildren().add(lastScore);
+	    }
+	    
+	    Text title = new Text(300, 200, "Leaderboard");
+	    root.getChildren().add(title);
 	    // Fetch and display high scores in sorted order
         for (String highscore : highscores.getHighscores()) {
             leaderboardBox.getChildren().add(new Text(highscore));
