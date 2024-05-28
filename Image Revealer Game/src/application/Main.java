@@ -175,7 +175,6 @@ public class Main extends Application {
 			introScreen.getChildren().add(historyButton);
 			introScreen.getChildren().add(animalButton);
 			introScreen.getChildren().add(fruitButton);
-			introScreen.getChildren().add(backButton);
 			stage.setScene(introScreen1);
 		}
 		if (state==1) {
