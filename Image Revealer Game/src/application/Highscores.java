@@ -72,9 +72,13 @@ public class Highscores {
     // Get	the last added high score
     public String getLastHighscore() {
         String[] lastEntry = highScores.get(highScores.size() - 1);
-        return "Name: " + lastEntry[0] + ", Category: " + lastEntry[1] + ", Score: " + lastEntry[2] + ", Time: " + lastEntry[3];
+        //Name, Cat, Score, Time
+        return lastEntry[2]+" by username "+lastEntry[0]+" in the " + lastEntry[1]+" category";
     }
-
+    public int getHighScore() {
+    	String[] lastEntry = highScores.get(highScores.size() - 1);
+    	return Integer.parseInt(lastEntry[1]);
+    }
     // Update user score details
     public void updateScoreDetails(int circlesSplit, int secondsTaken, String name, String category) {
         int score = calculateScore(circlesSplit, secondsTaken);
