@@ -72,6 +72,7 @@ public class Main extends Application {
 			l.setStyle("-fx-font-family: 'Lucida Calligraphy'; -fx-font-size: 60; -fx-border-color: black; -fx-padding: 10; -fx-text-fill: 'blue';");
 			l.setLayoutX(100);
 			l.setLayoutY(200);
+			// Start button
 			Button start = new Button();
 			start.setText("Start");
 			start.setStyle("-fx-font-size:30");
@@ -83,8 +84,21 @@ public class Main extends Application {
 				}
 			};
 			start.setOnAction(startButton);
+			// Instructions button
+			Button instructions = new Button();
+			instructions.setText("Instructions");
+			instructions.setStyle("-fx-font-size:30");
+			instructions.setLayoutX(300); instructions.setLayoutY(500);
+			EventHandler<ActionEvent> instructionsButton = new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					state = 5;
+					start(stage);
+				}
+			};
+			instructions.setOnAction(instructionsButton);
 			startScreen.setStyle(buttonTemplate);
 			startScreen.getChildren().add(start);
+			startScreen.getChildren().add(instructions);
 			startScreen.getChildren().add(l);
 			stage.setTitle("Welcome");
 			stage.setScene(startScreen1);
@@ -255,6 +269,12 @@ public class Main extends Application {
 	        	start(stage);
 	        });
 			stage.setScene(scene);
+		}
+		// Screen to instructions
+		if(state==5) {
+			root.setBackground(bg1);
+			Text text = new Text("Hello!");
+			root.getChildren().add(text);
 		}
         
 		
