@@ -92,7 +92,7 @@ public class Guess {
 
 	public static boolean isCorrect(String category) {
 		if (userGuess.toLowerCase().equals(answer.toLowerCase())) {
-      int secondsTaken = getElapsedTime();
+			int secondsTaken = getElapsedTime();
 			showWinScreen(category, secondsTaken);
 			return true;
 		}
@@ -118,7 +118,7 @@ public class Guess {
 	public static void lost() {
 		showLoseScreen();
 	}
-	private static void showWinScreen(String category, secondsTaken) {
+	private static void showWinScreen(String category, int secondsTaken) {
 		// Create a new pane for the win screen
 		Pane winPane = new Pane();
 		// Add the winPane to the main application scene
@@ -165,15 +165,14 @@ public class Guess {
 		scrollPane.setLayoutY(250);
 		scrollPane.setPrefSize(300, 200);
 		root.getChildren().add(scrollPane);
-
+		
 		if(!cheated) {
-			// Display the last added high score separately
-			Text lastScore = new Text("Last highscore was "+highscores.getLastHighscore());
-			lastScore.setLayoutX(300);
-			lastScore.setLayoutY(500);
-			lastScore.setStyle("-fx-font-weight: bold; -fx-font-size: 18px;");
-			root.getChildren().add(lastScore);
-		}
+	        // Display the last added high score separately
+	        Text lastScore = new Text(highscores.getLastHighscore());
+	        lastScore.setStyle("-fx-font-weight: bold; -fx-font-size: 18px;");
+	        leaderboardBox.getChildren().add(lastScore);
+	    }
+		
 		// Fetch and display high scores in sorted order
 		for (String highscore : highscores.getHighscores()) {
 			leaderboardBox.getChildren().add(new Text(highscore));
