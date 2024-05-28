@@ -92,7 +92,8 @@ public class Guess {
 
 	public static boolean isCorrect(String category) {
 		if (userGuess.toLowerCase().equals(answer.toLowerCase())) {
-			showWinScreen(category);
+      int secondsTaken = getElapsedTime();
+			showWinScreen(category, secondsTaken);
 			return true;
 		}
 		else {
@@ -117,7 +118,7 @@ public class Guess {
 	public static void lost() {
 		showLoseScreen();
 	}
-	private static void showWinScreen(String category) {
+	private static void showWinScreen(String category, secondsTaken) {
 		// Create a new pane for the win screen
 		Pane winPane = new Pane();
 		// Add the winPane to the main application scene
@@ -150,7 +151,6 @@ public class Guess {
 		submitButton.setOnAction(event -> {
 			String username = usernameField.getText();
 			Highscores highscores = new Highscores("highscores.csv");
-			int secondsTaken = getElapsedTime();
 			highscores.addHighscore(username, category, highscores.calculateScore(ImageToCircleSplitter.getCirclesSplit(), secondsTaken), secondsTaken);
 			showLeaderboard(winPane, false);
 		});
