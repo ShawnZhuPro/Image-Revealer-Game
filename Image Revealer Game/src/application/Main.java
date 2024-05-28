@@ -117,6 +117,7 @@ public class Main extends Application {
 				
 				-7 wonders
 			 */
+			backButton.setVisible(false);
 			Group introScreen = new Group();
 			Scene introScreen1 = new Scene(introScreen, maxSize, maxSize);
 			introScreen1.setFill(g1);
@@ -183,13 +184,17 @@ public class Main extends Application {
 			fruitButton.setStyle(buttonTemplate);
 			fruitButton.setLayoutX(fruitButton.getLayoutX()+100);
       
-			// Render buttons on intro screen
+			// Render buttons on intro screen			
 			introScreen.getChildren().add(text);
+			introScreen.getChildren().add(backButton);
 			introScreen.getChildren().add(celebButton);
 			introScreen.getChildren().add(historyButton);
 			introScreen.getChildren().add(animalButton);
 			introScreen.getChildren().add(fruitButton);
 			stage.setScene(introScreen1);
+		}
+		else {
+			backButton.setVisible(true);
 		}
 		if (state==1) {
 			String[] pres_locs = {dir + "Presidents/BillClinton-8.png", dir + "Presidents/GeorgeWBush-6.png", 
@@ -272,9 +277,25 @@ public class Main extends Application {
 		}
 		// Screen to instructions
 		if(state==5) {
-			root.setBackground(bg1);
-			Text text = new Text("Hello!");
-			root.getChildren().add(text);
+			Group instructionsScreen = new Group();
+			Scene instructionsScreen2 = new Scene(instructionsScreen, 800, 800, g1);
+			Text text = new Text("Tutorial");
+			text.setStyle("-fx-font-size: 50; -fx-font-family: 'Helvetica'");
+			text.setLayoutX(300); text.setLayoutY(100);
+			Text panel1 = new Text("Step 1: Pick a category");
+			Text panel2 = new Text("Step 2: Use your mouse to hover over the circles. \nThey'll"
+					+ " split as you click over them, and eventually you'll get an image that you can guess.");
+			Text panel3 = new Text("Step 3: When you have a guess, input it into the box and press submit.");
+			Text panel4 = new Text("Be aware that the submission box is sensitive (No spelling mistakes!)");
+			Text panel5 = new Text("Step 4: Good Luck!");
+			panel1.setLayoutX(200); text.setLayoutY(350);
+			panel2.setLayoutX(200); text.setLayoutY(400);
+			panel3.setLayoutX(200); text.setLayoutY(450);
+			panel4.setLayoutX(200); text.setLayoutY(500);
+			panel5.setLayoutX(200); text.setLayoutY(550);
+			instructionsScreen.getChildren().addAll(text, panel1, panel2, panel3, panel4, panel5);
+			stage.setScene(instructionsScreen2);
+			
 		}
         
 		
