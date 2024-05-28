@@ -115,9 +115,11 @@ public class Guess {
 		//Show leaderboard
 		showLeaderboard(losePane, true);
 	}
+	
 	public static void lost() {
 		showLoseScreen();
 	}
+	
 	private static void showWinScreen(String category, int secondsTaken) {
 		// Create a new pane for the win screen
 		Pane winPane = new Pane();
@@ -145,14 +147,13 @@ public class Guess {
 		submitButton.setLayoutY(200);
 		winPane.getChildren().add(submitButton);
 
-
-
-		// Handle submit button click
+		// Handle highscore leaderboard submit button click
 		submitButton.setOnAction(event -> {
 			String username = usernameField.getText();
 			Highscores highscores = new Highscores("highscores.csv");
 			highscores.addHighscore(username, category, highscores.calculateScore(ImageToCircleSplitter.getCirclesSplit(), secondsTaken), secondsTaken);
 			showLeaderboard(winPane, false);
+			submitButton.setDisable(true);  // Can only submit highscore once
 		});
 	}
 
