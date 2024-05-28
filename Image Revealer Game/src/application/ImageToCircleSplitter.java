@@ -31,7 +31,7 @@ public class ImageToCircleSplitter {
 
 	private void initialize(String answer, String category) {
 		//Generic button template
-		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
+		String buttonTemplate = "-fx-font-family: 'Arial'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
 		// Initialize initial big circle
 		int width = (int) image.getWidth();
 		int height = (int) image.getHeight();
@@ -40,7 +40,7 @@ public class ImageToCircleSplitter {
 		root.getChildren().add(bigCircle);  // Adds bigCircle to the pane named "root" (basically displays the circle)
 
 		// Initialize the Text object for circle splits
-		splitCountText = new Text(500, 100, "Circles split: 0");
+		splitCountText = new Text(300, 200, "Circles split: 0");
 		root.getChildren().add(splitCountText);
 
 		// Initialize static Guess class
@@ -79,15 +79,14 @@ public class ImageToCircleSplitter {
 		// Continue button action
 		continueButton.setOnMouseClicked(event -> {
 			// Redirects to highscores screen, but user can't enter info to save highscore
-		    Pane winPane = new Pane();
-		    Main.changeRoot(winPane);
-			Guess.showLeaderboard(winPane, true);
+		    Guess.lost();
 		});
 		
 		// Add a text to display elapsed time
 	    Text elapsedTimeText = new Text("Time Elapsed: 0 seconds");
 	    elapsedTimeText.setLayoutX(300);
 	    elapsedTimeText.setLayoutY(250);
+	    elapsedTimeText.setStyle("-fx-font-size: 20");
 	    root.getChildren().add(elapsedTimeText);
 
 	    // Start a timeline to update elapsed time text every second
@@ -108,6 +107,7 @@ public class ImageToCircleSplitter {
 		// Display circles split on screen
 		circlesSplit++;
 		splitCountText.setText("Circles split: " + getCirclesSplit());
+		splitCountText.setStyle("-fx-font-size: 20");
 
 		double newRadius = circle.getRadius() / 2;
 		double x = circle.getCenterX();

@@ -1,5 +1,4 @@
 package application;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,7 +37,7 @@ public class Main extends Application {
 		Scene scene = new Scene(root, maxSize, maxSize);
 		// Initialize back button & its action
 		//Generic button template
-		String buttonTemplate = "-fx-font-family: 'Lucida Calligraphy'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
+		String buttonTemplate = "-fx-font-family: 'Arial'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
 		//Generic gradient to fill all the backgrounds with
 		Stop[] stops1 = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
 		LinearGradient g1 = new LinearGradient(0,0,maxSize, maxSize, false, CycleMethod.REFLECT, stops1);
@@ -46,7 +45,7 @@ public class Main extends Application {
 		Background bg1 = new Background(bg);
 		Button backButton = new Button("Go Back");
 		backButton.setStyle(buttonTemplate);
-		backButton.setLayoutX(600); backButton.setLayoutY(600);
+		backButton.setLayoutX(700); backButton.setLayoutY(600);
 		EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() { 
 			public void handle(ActionEvent e) 
 			{ 
@@ -75,6 +74,7 @@ public class Main extends Application {
 			l.setLayoutY(200);
 			Button start = new Button();
 			start.setText("Start");
+			start.setStyle("-fx-font-size:30");
 			start.setLayoutX(300); start.setLayoutY(600);
 			EventHandler<ActionEvent> startButton = new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
@@ -108,7 +108,7 @@ public class Main extends Application {
 			introScreen1.setFill(g1);
 			stage.setTitle("Welcome!");
 			Text text = new Text();
-			text.setText("Pick a category below to get started. Can you beat the \nhigh score of {highscore}?");
+			text.setText("Pick a category below to get started. Can you beat the \nhigh score?");
 			text.setFont(new Font(40.0));
 			text.setX(50); text.setY(100);
       
