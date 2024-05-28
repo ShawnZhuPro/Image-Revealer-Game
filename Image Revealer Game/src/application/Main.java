@@ -125,7 +125,6 @@ public class Main extends Application {
 			EventHandler<ActionEvent> history_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
-					System.out.println("History button selected"); 
 					state = 1;
 					start(stage);
 				} 
@@ -135,7 +134,6 @@ public class Main extends Application {
 			EventHandler<ActionEvent> celeb_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
-					System.out.println("Celebrity button selected"); 
 					state = 2;
 					start(stage);
 				} 
@@ -145,7 +143,6 @@ public class Main extends Application {
 			EventHandler<ActionEvent> animal_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
-					System.out.println("Animal button selected"); 
 					state = 3;
 					start(stage);
 				} 
@@ -155,7 +152,6 @@ public class Main extends Application {
 			EventHandler<ActionEvent> fruit_event = new EventHandler<ActionEvent>() { 
 				public void handle(ActionEvent e) 
 				{ 
-					System.out.println("Fruit button selected"); 
 					state = 4;
 					start(stage);
 				} 
