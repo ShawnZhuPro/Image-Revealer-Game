@@ -280,6 +280,7 @@ public class Main extends Application {
 			Group instructionsScreen = new Group();
 			Scene instructionsScreen2 = new Scene(instructionsScreen, 800, 800, g1);
 			Text text = new Text("Tutorial");
+			String textStyle = "-fx-font-size: 15; -fx-font-family: 'Helvetica'";
 			text.setStyle("-fx-font-size: 50; -fx-font-family: 'Helvetica'");
 			text.setLayoutX(300); text.setLayoutY(100);
 			Text panel1 = new Text("Step 1: Pick a category");
@@ -288,11 +289,11 @@ public class Main extends Application {
 			Text panel3 = new Text("Step 3: When you have a guess, input it into the box and press submit.");
 			Text panel4 = new Text("Be aware that the submission box is sensitive (No spelling mistakes!)");
 			Text panel5 = new Text("Step 4: Good Luck!");
-			panel1.setLayoutX(200); text.setLayoutY(350);
-			panel2.setLayoutX(200); text.setLayoutY(400);
-			panel3.setLayoutX(200); text.setLayoutY(450);
-			panel4.setLayoutX(200); text.setLayoutY(500);
-			panel5.setLayoutX(200); text.setLayoutY(550);
+			panel1.setLayoutX(150); panel1.setLayoutY(350); panel1.setStyle(textStyle);
+			panel2.setLayoutX(150); panel2.setLayoutY(400); panel2.setStyle(textStyle);
+			panel3.setLayoutX(150); panel3.setLayoutY(450); panel3.setStyle(textStyle);
+			panel4.setLayoutX(150); panel4.setLayoutY(500); panel4.setStyle(textStyle);
+			panel5.setLayoutX(150); panel5.setLayoutY(550); panel5.setStyle(textStyle);
 			instructionsScreen.getChildren().addAll(text, panel1, panel2, panel3, panel4, panel5);
 			stage.setScene(instructionsScreen2);
 			
