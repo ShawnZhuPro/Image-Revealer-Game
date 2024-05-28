@@ -163,7 +163,7 @@ public class Guess {
 		ScrollPane scrollPane = new ScrollPane(leaderboardBox);
 		scrollPane.setLayoutX(300);
 		scrollPane.setLayoutY(250);
-		scrollPane.setPrefSize(300, 200);
+		scrollPane.setPrefSize(600, 400);
 		root.getChildren().add(scrollPane);
 		
 		if(!cheated) {

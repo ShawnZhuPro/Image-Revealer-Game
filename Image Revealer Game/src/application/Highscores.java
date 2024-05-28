@@ -73,7 +73,7 @@ public class Highscores {
     public String getLastHighscore() {
         String[] lastEntry = highScores.get(highScores.size() - 1);
         //Name, Cat, Score, Time
-        return lastEntry[2]+" by username "+lastEntry[0]+" in the " + lastEntry[1]+" category";
+        return "Your Score - Name: " + lastEntry[0] + ", Category: " + lastEntry[1] + ", Score: " + lastEntry[2] + ", Time: " + lastEntry[3];
     }
     public int getHighScore() {
     	String[] lastEntry = highScores.get(highScores.size() - 1);
