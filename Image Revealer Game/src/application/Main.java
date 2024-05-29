@@ -22,7 +22,7 @@ public class Main extends Application {
 
 	int targetDepth = 7; // Max # of iterations for splitCircle() method
 	int maxSize = 1024;   // Max size of the scene
-	int state = -1;
+	public static int state = -1;
 	String dir = "file:./Image Revealer Game/src/";
     private static Stage primaryStage;
 
@@ -61,7 +61,10 @@ public class Main extends Application {
         skipButton.setLayoutX(600);
         skipButton.setLayoutY(150);
 
-		
+		if (state==-2) {
+			state=-1;
+			start(stage);
+		}
 		
 		if (state==-1) {
 			Group startScreen = new Group();
@@ -294,7 +297,8 @@ public class Main extends Application {
 			panel3.setLayoutX(150); panel3.setLayoutY(450); panel3.setStyle(textStyle);
 			panel4.setLayoutX(150); panel4.setLayoutY(500); panel4.setStyle(textStyle);
 			panel5.setLayoutX(150); panel5.setLayoutY(550); panel5.setStyle(textStyle);
-			instructionsScreen.getChildren().addAll(text, panel1, panel2, panel3, panel4, panel5);
+			backButton.setLayoutX(150); backButton.setLayoutY(600);
+			instructionsScreen.getChildren().addAll(backButton,text, panel1, panel2, panel3, panel4, panel5);
 			stage.setScene(instructionsScreen2);
 			
 		}
@@ -305,10 +309,15 @@ public class Main extends Application {
 	}
 	
 	public static void changeRoot(Pane newRoot) {
-        primaryStage.getScene().setRoot(newRoot);
+        getPrimaryStage().getScene().setRoot(newRoot);
     }
+	
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public static Stage getPrimaryStage() {
+		return primaryStage;
 	}
 }
