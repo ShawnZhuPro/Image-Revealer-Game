@@ -159,9 +159,6 @@ public class Guess {
 		Button playAgain = new Button("Play Again");
 		playAgain.setLayoutX(200);playAgain.setLayoutY(100);
 		playAgain.setOnAction(event -> {
-			Main.state=-1;
-			Main.changeRoot(new Pane());
-			Main.getPrimaryStage().show();
 			
 		});
 		winPane.getChildren().add(playAgain);

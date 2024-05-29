@@ -310,6 +310,7 @@ public class Main extends Application {
 	
 	public static void changeRoot(Pane newRoot) {
         getPrimaryStage().getScene().setRoot(newRoot);
+        
     }
 	
 
