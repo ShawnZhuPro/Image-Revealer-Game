@@ -60,12 +60,17 @@ public class Main extends Application {
         skipButton.setStyle(buttonTemplate);
         skipButton.setLayoutX(600);
         skipButton.setLayoutY(150);
-
-		if (state==-2) {
-			state=-1;
-			start(stage);
-		}
-		
+        
+        /*
+         * A key for all the states
+         * -1: Start screen
+         *  0: Selection Menu
+         *  1: Presidents
+         *  2: Celebrities
+         *  3: Animals
+         *  4: Fruits
+         *  5: Instructions
+         */
 		if (state==-1) {
 			Group startScreen = new Group();
 			Stop[] stops = {new Stop(0, Color.PINK),new Stop(1, Color.ORANGE)};
@@ -107,19 +112,6 @@ public class Main extends Application {
 			stage.setScene(startScreen1);
 		}
 		if (state==0) {
-			//Start menu
-			/*
-			 * Categories:
-			 *  -Historical Figures(Presidents)
-
-				-Celebrities
-
-				-Animals
-
-				-Fruits
-				
-				-7 wonders
-			 */
 			backButton.setVisible(false);
 			Group introScreen = new Group();
 			Scene introScreen1 = new Scene(introScreen, maxSize, maxSize);
@@ -199,6 +191,7 @@ public class Main extends Application {
 		else {
 			backButton.setVisible(true);
 		}
+		//Presidents
 		if (state==1) {
 			String[] pres_locs = {dir + "Presidents/BillClinton-8.png", dir + "Presidents/GeorgeWBush-6.png", 
 					dir + "Presidents/GW-1.png", dir + "Presidents/HarryTruman-10.png", dir + "Presidents/JFK-4.png", 
@@ -206,6 +199,7 @@ public class Main extends Application {
 					dir+"Presidents/Obama-3.png", dir+"Presidents/RichardNixon-9.png", dir+"Presidents/RonaldReagan-7.png"};
 			String[] pres_ans = {"Bill Clinton", "George Bush", "George Washington", "Harry Truman", "John F Kennedy", "Joe Biden",
 					"Barack Obama", "Richard Nixon", "Ronald Reagan"};
+			//This line of code choses a random image from the list of file paths.
 			int random_img = (int)(Math.random()*pres_locs.length);
 			root.setBackground(bg1);
 			new ImageToCircleSplitter(pres_locs[random_img], root, maxSize, targetDepth, pres_ans[random_img], "Presidents");
@@ -220,6 +214,7 @@ public class Main extends Application {
 	        });
 			stage.setScene(scene);
 		}
+		//Celebrities
 		if (state==2) {
 			String[] celeb_locs = {dir + "Celebrities/Andrew_Garfield-10.png", dir + "Celebrities/Brad_Pitt-2.jpg", dir + "Celebrities/Chris_Evans-6.png", dir + "Celebrities/Chris_Hemsworth-7.png", dir + "Celebrities/Kevin_Hart-4.png",
 					dir+"Celebrities/Lebron_James-5.png", dir+"Celebrities/Matthew_Mccounagey-3.png", dir+"Celebrities/Robert_Downey_Jr-1.jpg",
@@ -240,6 +235,7 @@ public class Main extends Application {
 	        });
 			stage.setScene(scene);
 		}
+		//Animals
 		if (state==3) {
 			String[] animal_locs = {dir+"Animals/Dog-10.jpg", dir+"Animals/Eagle-4.png", dir+"Animals/Fox-9.jpg", dir+"Animals/Lion-3.png",
 					dir+"Animals/Panda-1.png", dir+"Animals/Rhino-5.png", dir+"Animals/Shark-8.jpg", dir+"Tiger-2.png",
@@ -259,6 +255,7 @@ public class Main extends Application {
 	        });
 			stage.setScene(scene);
 		}
+		//Fruits
 		if (state==4) {
 			String[] fruit_locs = {dir + "Fruits/Apple-1.png", dir + "Fruits/Banana-2.png", dir + "Fruits/Dragonfruit-6.jpg", dir + "Fruits/Durian-8.jpg", dir + "Fruits/Grape-5.png",
 					dir+"Fruits/Jackfruit-9.jpg", dir+"Fruits/Kiwi-4.png", dir+"Fruits/Lychee-10.jpg", dir+"Fruits/Orange-3.png", dir+"Fruits/Passionfruit-7.jpg"};
@@ -304,7 +301,7 @@ public class Main extends Application {
 		}
         
 		
-		stage.setTitle("Guess Who");
+		stage.setTitle("Visionary Voyage");
 		stage.show();
 	}
 	

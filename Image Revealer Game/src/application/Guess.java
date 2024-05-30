@@ -17,7 +17,9 @@ public class Guess {
 	private static VBox guessBox;
 	private static Queue<String> guessHistory;
 	private static long startTime;
-
+	
+	//Button template
+	static String buttonTemplate = "-fx-font-family: 'Arial'; -fx-text-fill: 'blue'; -fx-color: 'Orange'; -fx-border-color: black; -fx-font-size: 15; -fx-text-fill: 'blue';";
 
 	public Guess(Pane root, String answer, String category) {
 		Guess.answer = answer;
@@ -143,6 +145,7 @@ public class Guess {
 
 		// Add a submit button
 		Button submitButton = new Button("Submit");
+		submitButton.setStyle(buttonTemplate);
 		submitButton.setLayoutX(300);
 		submitButton.setLayoutY(200);
 		winPane.getChildren().add(submitButton);
