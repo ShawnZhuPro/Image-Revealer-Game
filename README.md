@@ -18,3 +18,5 @@ How to setup JavaFX
 17. Choose the arguments tab and type this in VM arguments.
     --module-path /path/to/JavaFX/lib  --add-modules=javafx.controls,javafx.fxml
     **REPLACE PATH TO WITH THE ACTUAL PATH**
+
+Video instructions: https://drive.google.com/file/d/1EDCUYnVZJgaTT8FmOtsTFBbUlNSz-Zhr/view?usp=sharing
